@@ -9,9 +9,6 @@
 <table>
     <tr>
         <th>
-            User
-        </th>
-        <th>
             UserName
         </th>
         <th></th>
@@ -20,15 +17,12 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-			@item.DisplayName
-        </td>
-        <td>
 			@item.UserName
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id })
             &nbsp;|&nbsp;
-            @Html.DeleteLink("Delete", @item.Id, @item.DisplayName)
+            @Html.DeleteLink("Delete", @item.Id, @item.UserName)
         </td>
     </tr>
 }

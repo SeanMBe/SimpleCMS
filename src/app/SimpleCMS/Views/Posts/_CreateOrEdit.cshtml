@@ -17,9 +17,16 @@
 </div>
 
 <div class="editor-label">
-    @Html.LabelFor(model => model.AuthorId)
+    @Html.Label("Author")
 </div>
 <div class="editor-field">
-    @Html.EditorFor(model => model.AuthorId)
-    @Html.ValidationMessageFor(model => model.AuthorId)
+    @if (Model != null) {
+        @Html.DropDownList("AuthorId",
+            new SelectList(ViewBag.Authors as System.Collections.IEnumerable,
+            "Id", "UserName", Model.Author.Id))
+    } else {
+        @Html.DropDownList("AuthorId",
+            new SelectList(ViewBag.Authors as System.Collections.IEnumerable,
+            "Id", "UserName"))
+    }
 </div>

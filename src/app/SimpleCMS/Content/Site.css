@@ -133,7 +133,7 @@ div.messages
 div.messages div
 {
     margin-bottom: 20px;
-    padding: 5px 5px 5px 14px;
+    padding: 5px 14px 5px 14px;
     -moz-box-shadow: 0 0 4px #6A91B7;
     -moz-border-radius: 7px;
     border-radius: 7px;

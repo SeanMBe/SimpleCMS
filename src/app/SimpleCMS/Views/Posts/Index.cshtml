@@ -29,7 +29,7 @@
 			@item.Body.Ellipsify(50)
         </td>
         <td>
-			@(item.Author == null ? "None" : item.Author.DisplayName)
+			@(item.Author == null ? "None" : item.Author.UserName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id })

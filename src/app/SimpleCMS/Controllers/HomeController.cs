@@ -31,8 +31,9 @@ namespace SimpleCMS.Controllers
             ComponentsInstaller.GetDataSession().BuildSchema(session);
 
             var repository = new Repository(session);
-            repository.Save(new User { DisplayName = "Tom Bombadil", UserName = "tombombadil" });
-            repository.Save(new Post { Title = "Title", Body = "Body", AuthorId = 1 });
+            var user = new User { UserName = "Tom Bombadil" };
+            repository.Save(user);
+            repository.Save(new Post { Title = "Title", Body = "Body", Author = user });
 
             return RedirectToAction("Index");
         }

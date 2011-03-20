@@ -65,7 +65,7 @@ namespace SimpleCMS.Data
         {
             using (var transaction = session.BeginTransaction())
             {
-                //item.UpdateForSave();
+                item.UpdateForSave();
                 session.SaveOrUpdate(item);
                 transaction.Commit();
             }

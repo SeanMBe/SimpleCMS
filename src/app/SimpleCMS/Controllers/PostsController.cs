@@ -21,15 +21,16 @@ namespace SimpleCMS.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.Users = repository.FindAll<User>();
+            ViewBag.Authors = repository.FindAll<User>();
             return View();
         } 
 
         [HttpPost]
-        public ActionResult Create(Post post)
+        public ActionResult Create(Post post, int authorId)
         {
             if (ModelState.IsValid)
             {
+                post.Author = repository.Find<User>(x => x.Id == authorId);
                 repository.Save(post);
 				return RedirectToAction("Index");  
             }
@@ -39,16 +40,17 @@ namespace SimpleCMS.Controllers
         
         public ActionResult Edit(int id)
         {
+            ViewBag.Authors = repository.FindAll<User>();
             var post = repository.Find<Post>(x => x.Id == id);
-            ViewBag.Users = repository.FindAll<User>();
 			return View(post);
         }
 
         [HttpPost]
-        public ActionResult Edit(Post post)
+        public ActionResult Edit(Post post, int authorId)
         {
             if (ModelState.IsValid)
             {
+                post.Author = repository.Find<User>(x => x.Id == authorId);
                 repository.Save(post);
                 return RedirectToAction("Index");
             }

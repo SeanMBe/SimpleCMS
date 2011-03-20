@@ -1,8 +1,10 @@
-﻿namespace SimpleCMS.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SimpleCMS.Models
 {
     public class User : DataModel
     {
-        public virtual string DisplayName { get; set; }
+        [Required(ErrorMessage = "UserName is required")]
         public virtual string UserName { get; set; }
     }
 }

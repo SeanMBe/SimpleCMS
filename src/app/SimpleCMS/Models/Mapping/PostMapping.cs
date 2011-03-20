@@ -12,7 +12,7 @@ namespace SimpleCMS.Models.Mapping
             Map(x => x.Body);
             Map(x => x.CreatedDate);
             Map(x => x.ModifiedDate);
-            References(x => x.Author).Column("AuthorId");
+            References(x => x.Author, "AuthorId");
         }
     }
 }
