@@ -43,11 +43,20 @@ namespace SimpleCMS.Data
                 .List();
         }
 
+        public IList<T> FindAll<T>(Expression<Func<T, object>> projection, bool ascending = true) where T : DataModel
+        {
+            var queryOverOrderBuilder = Session
+                .QueryOver<T>()
+                .OrderBy(projection);
+
+            return ascending ? queryOverOrderBuilder.Asc.List() : queryOverOrderBuilder.Desc.List();
+        }
+
         public IList<T> FindAll<T>(Expression<Func<T, bool>> criteria, Expression<Func<T, object>> projection, bool ascending = true) where T : DataModel
         {
             var queryOverOrderBuilder = Session
                 .QueryOver<T>()
-                //.Where(criteria)
+                .Where(criteria)
                 .OrderBy(projection);
 
             return ascending ? queryOverOrderBuilder.Asc.List() : queryOverOrderBuilder.Desc.List();

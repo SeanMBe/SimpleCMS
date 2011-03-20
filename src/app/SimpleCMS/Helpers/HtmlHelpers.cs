@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 
@@ -9,6 +10,12 @@ namespace SimpleCMS.Helpers
         public static IHtmlString SubmitButton(this HtmlHelper helpers, string text)
         {
             var result = string.Format(@"<p><input type=""submit"" class=""button white"" value=""{0}""></p>", text);
+            return new HtmlString(result);
+        }
+
+        public static IHtmlString FriendlyDate(this HtmlHelper helpers, DateTime date)
+        {
+            var result = date.ToShortTimeString();
             return new HtmlString(result);
         }
 

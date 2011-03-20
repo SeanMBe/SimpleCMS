@@ -13,6 +13,7 @@ namespace SimpleCMS.Data
         T Find<T>(Expression<Func<T, bool>> criteria) where T : DataModel;
         IList<T> FindAll<T>() where T : DataModel;
         IList<T> FindAll<T>(Expression<Func<T, bool>> criteria) where T : DataModel;
+        IList<T> FindAll<T>(Expression<Func<T, object>> projection, bool ascending = true) where T : DataModel;
         IList<T> FindAll<T>(Expression<Func<T, bool>> criteria, Expression<Func<T, object>> projection, bool ascending = true) where T : DataModel;
         void Save<T>(T item) where T : DataModel;
         void Delete<T>(int id) where T : DataModel;

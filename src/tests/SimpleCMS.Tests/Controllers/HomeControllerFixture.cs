@@ -26,7 +26,7 @@ namespace SimpleCMS.Tests.Controllers
         {
             var posts = new List<Post>();
             repository
-                .Setup(x => x.FindAll<Post>(post => true, post => post.CreatedDate, true))
+                .Setup(x => x.FindAll<Post>(post => post.CreatedDate, true))
                 .Returns(posts);
 
             var result = (ViewResult)controller.Index();

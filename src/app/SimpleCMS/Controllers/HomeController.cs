@@ -16,7 +16,7 @@ namespace SimpleCMS.Controllers
 
         public ActionResult Index()
         {
-            var posts = repository.FindAll<Post>(post => true, post => post.CreatedDate);
+            var posts = repository.FindAll<Post>(post => post.CreatedDate);
 
             return View(posts);
         }

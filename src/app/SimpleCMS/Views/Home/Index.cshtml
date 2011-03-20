@@ -1,14 +1,15 @@
-﻿@{
+﻿@using SimpleCMS.Helpers
+@{
     ViewBag.Title = "Index";
 }
 
-@foreach (var item in Model) {
+@foreach (Post item in Model) {
     <div class="post">
         <b>@item.Title</b>
         <p>@item.Body</p>
         <div class="author">
-            posted by @item.Author.UserName 
-            @@ @item.CreatedDate.FriendlyDate()
+            posted by @item.Author.UserName
+            at @Html.FriendlyDate(item.CreatedDate)
         </div>
         <div class="clear"></div>
     </div>
