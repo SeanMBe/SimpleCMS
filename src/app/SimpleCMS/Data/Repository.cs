@@ -8,21 +8,21 @@ namespace SimpleCMS.Data
 {
     public class Repository : IRepository
     {
-        private readonly ISession session;
+        public ISession Session { get; private set; }
 
         public Repository(ISession session)
         {
-            this.session = session;
+            Session = session;
         }
 
         public T Find<T>(int id) where T : DataModel
         {
-            return session.Get<T>(id);
+            return Session.Get<T>(id);
         }
 
         public T Find<T>(Expression<Func<T, bool>> criteria) where T : DataModel
         {
-            return session
+            return Session
                 .QueryOver<T>()
                 .Where(criteria)
                 .SingleOrDefault();
@@ -30,43 +30,35 @@ namespace SimpleCMS.Data
 
         public IList<T> FindAll<T>() where T : DataModel
         {
-            return session
+            return Session
                 .CreateCriteria<T>()
                 .List<T>();
         }
 
         public IList<T> FindAll<T>(Expression<Func<T, bool>> criteria) where T : DataModel
         {
-            return session
+            return Session
                 .QueryOver<T>()
                 .Where(criteria)
                 .List();
         }
 
-        public IList<T> FindAllAscending<T>(Expression<Func<T, bool>> criteria, Expression<Func<T, object>> projection) where T : DataModel
+        public IList<T> FindAll<T>(Expression<Func<T, bool>> criteria, Expression<Func<T, object>> projection, bool ascending = true) where T : DataModel
         {
-            return session
+            var queryOverOrderBuilder = Session
                 .QueryOver<T>()
-                .Where(criteria)
-                .OrderBy(projection).Asc
-                .List();
-        }
+                //.Where(criteria)
+                .OrderBy(projection);
 
-        public IList<T> FindAllDescending<T>(Expression<Func<T, bool>> criteria, Expression<Func<T, object>> projection) where T : DataModel
-        {
-            return session
-                .QueryOver<T>()
-                .Where(criteria)
-                .OrderBy(projection).Desc
-                .List();
+            return ascending ? queryOverOrderBuilder.Asc.List() : queryOverOrderBuilder.Desc.List();
         }
 
         public void Save<T>(T item) where T : DataModel
         {
-            using (var transaction = session.BeginTransaction())
+            using (var transaction = Session.BeginTransaction())
             {
                 item.UpdateForSave();
-                session.SaveOrUpdate(item);
+                Session.SaveOrUpdate(item);
                 transaction.Commit();
             }
         }
@@ -78,9 +70,9 @@ namespace SimpleCMS.Data
 
         public void Delete<T>(T entity) where T : DataModel
         {
-            using (var transaction = session.BeginTransaction())
+            using (var transaction = Session.BeginTransaction())
             {
-                session.Delete(entity);
+                Session.Delete(entity);
                 transaction.Commit();
             }
         }

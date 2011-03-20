@@ -54,7 +54,9 @@ namespace SimpleCMS.Controllers
                 repository.Save(post);
                 return RedirectToAction("Index");
             }
-            return View(post);
+            ViewBag.Authors = repository.FindAll<User>();
+            var refreshedPost = repository.Find<Post>(x => x.Id == post.Id);
+            return View(refreshedPost);
         }
 
         [HttpPost, ActionName("Delete")]

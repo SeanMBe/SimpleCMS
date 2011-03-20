@@ -2,9 +2,9 @@
 using NHibernate;
 using SimpleCMS.Data;
 
-namespace SimpleCMS.Tests.Data
+namespace SimpleCMS.Tests
 {
-    public class DataHelper
+    public class DataSessionHelper
     {
         protected static DataSession DataSession;
         protected static ISessionFactory SessionFactory;

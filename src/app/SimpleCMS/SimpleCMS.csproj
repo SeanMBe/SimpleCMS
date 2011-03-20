@@ -153,10 +153,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\DateTimeHelpers.cs" />
     <Compile Include="Helpers\HtmlHelpers.cs" />
+    <Compile Include="Infrastructure\Password.cs" />
     <Compile Include="Helpers\StringHelpers.cs" />
     <Compile Include="Infrastructure\BootStrap.cs" />
     <Compile Include="Infrastructure\ComponentsInstaller.cs" />
+    <Compile Include="Infrastructure\Predicate.cs" />
     <Compile Include="Infrastructure\WindsorControllerFactory.cs" />
     <Compile Include="Models\Mapping\PostMapping.cs" />
     <Compile Include="Models\Mapping\UserMapping.cs" />

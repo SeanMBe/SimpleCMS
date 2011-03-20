@@ -14,7 +14,7 @@ namespace SimpleCMS.Tests.Data
         [SetUp]
         public void Setup()
         {
-            session = DataHelper.GetSession();
+            session = DataSessionHelper.GetSession();
             repository = new Repository(session);
         }
 

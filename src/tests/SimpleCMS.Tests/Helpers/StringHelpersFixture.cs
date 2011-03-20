@@ -7,7 +7,7 @@ namespace SimpleCMS.Tests.Helpers
     public class StringHelpersFixture
     {
         [Test]
-        public void Ellipsify_Should()
+        public void Ellipsify_ShouldTruncateTextAndIncludedEllipses()
         {
             const string myString = "123456789";
 
