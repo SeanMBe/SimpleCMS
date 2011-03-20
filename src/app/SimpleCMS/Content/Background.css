@@ -1,0 +1,22 @@
+div.post
+{
+    border-radius: 10px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+
+    -webkit-box-shadow: 0px 2px 4px #999;
+    -moz-box-shadow: 0px 2px 4px #999;
+    box-shadow: 0px 2px 4px #999;
+				
+    padding: 16px;
+
+    background-image: url(sample-gradient.svg);
+    background-size: 100% 100%;
+    background-repeat: repeat-x;
+    background-position: 0 0;
+    background-color: #ddf1f9; /* old browsers */
+
+    background: -moz-linear-gradient(top, #feffff 0%, #ddf1f9 35%, #a0d8ef 100%); /* firefox */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#feffff), color-stop(35%,#ddf1f9), color-stop(100%,#a0d8ef)); /* webkit */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#feffff', endColorstr='#a0d8ef',GradientType=0 ); /* ie */
+}

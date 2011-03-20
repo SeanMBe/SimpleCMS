@@ -1,0 +1,17 @@
+@model SimpleCMS.Models.Post
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+	@Html.Partial("_CreateOrEdit", Model)
+    @Html.SubmitButton("Create")
+}
+
+<div class="actions">
+    @Html.ActionLink("Back to List", "Index")
+</div>

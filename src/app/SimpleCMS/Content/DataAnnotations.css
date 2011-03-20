@@ -1,0 +1,27 @@
+div.editor-label
+{
+    margin: 5px;
+}
+
+div.editor-label label
+{
+    font-size: 1.285em;
+}
+
+.text-box
+{
+    width: 500px;
+    padding: 5px;
+    font-family: Tahoma, sans-serif;
+    border: 2px solid #AAA;
+}
+
+input.single-line:focus, textarea.multi-line:focus
+{
+    border: 2px solid #888;
+}
+
+textarea.multi-line
+{
+    height: 120px;
+}

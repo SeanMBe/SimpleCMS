@@ -1,0 +1,45 @@
+@model IEnumerable<SimpleCMS.Models.Post>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<table>
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            Body
+        </th>
+        <th>
+            Author
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+			@item.Title
+        </td>
+        <td>
+			@item.Body.Ellipsify(50)
+        </td>
+        <td>
+			@(item.Author == null ? "None" : item.Author.DisplayName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id })
+            &nbsp;|&nbsp;
+            @Html.DeleteLink("Delete", @item.Id, @item.Title)
+        </td>
+    </tr>
+}
+</table>
+
+<div class="actions">
+    @Html.ActionLink("New Record", "Create")
+</div>

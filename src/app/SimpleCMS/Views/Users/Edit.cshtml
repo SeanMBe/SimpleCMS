@@ -1,0 +1,18 @@
+@model SimpleCMS.Models.User
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.Id)
+	@Html.Partial("_CreateOrEdit", Model)
+    @Html.SubmitButton("Save")
+}
+
+<div class="actions">
+    @Html.ActionLink("Back to List", "Index")
+</div>

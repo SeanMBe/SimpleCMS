@@ -1,0 +1,246 @@
+body
+{
+    font-family: Helvetica, sans-serif;
+    background-color: #E7E9E7;
+    font-size: 10pt;
+    padding: 0;
+    margin: 0;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, ul, ol
+{
+    font-size-adjust: none;
+    font-stretch: normal;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+}
+
+a:link, a:visited, a:active
+{
+    text-decoration: none;
+    color: #4183C4;
+}
+
+a:hover
+{
+    text-decoration: underline;
+}
+
+h2
+{
+    font-size: 1.6em;
+    text-decoration: underline;
+    margin-bottom: 20px;
+    padding: 5px 5px 5px 14px;
+}
+
+div.clear
+{
+    clear: both;
+}
+
+/****************/
+/* TOP ELEMENTS */
+/****************/
+
+div.top
+{
+    height: 80px;
+    background-color: #FFF;
+    border-bottom: 1px solid #CCC;
+}
+
+div.top_container, div.content
+{
+    width: 800px;
+    margin: auto;
+}
+
+div.logo
+{
+    float: left;
+    margin-top: 20px;
+}
+
+div.logo a
+{
+    /*background: url("../images/logo.jpg") no-repeat scroll 0 0 transparent;*/
+    display: block;
+    height: 40px;
+    width: 250px;
+}
+
+div.menu
+{
+    float: right;
+    margin-top: 10px;
+}
+
+div.menu ul
+{
+    list-style-type: none;
+}
+
+div.menu ul li
+{
+    float: left;
+    margin: 5px;
+}
+
+div.menu ul li a
+{
+    color: #888;
+    font-size: 1.5em;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    display: inline-block;
+    padding: 8px 17px;
+    border: 1px solid #CCC;
+    background-color: #E7E9E7;
+    border-radius: 7px;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    -ms-border-radius: 7px;
+}
+
+div.menu ul li a:hover
+{
+    color: #444;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #FFFFFF;
+    -moz-box-shadow: 0 0 4px #6A91B7;
+    -webkit-box-shadow: 0 0 4px #6A91B7;
+    box-shadow: 0 0 4px #6A91B7;
+}
+
+/*******************/
+/* MIDDLE ELEMENTS */
+/*******************/
+
+div.middle
+{
+    margin: 0px;
+    padding: 0px;
+}
+
+div.messages
+{
+    display: none;
+    margin-top: 0px;
+}
+
+div.messages div
+{
+    margin-bottom: 20px;
+    padding: 5px 5px 5px 14px;
+    -moz-box-shadow: 0 0 4px #6A91B7;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
+}
+
+div.notice
+{
+    border: 1px solid #33CC66;
+    background-color: #99FF66;
+}
+
+div.error
+{
+    border: 1px solid #FF0000;
+    background-color: #FF6A6A;
+}
+
+div.content
+{
+    margin-top: 20px;
+}
+
+div.post
+{
+    padding: 8px 8px 0 8px;
+    margin-bottom: 15px;
+    border: 1px solid #FFFFFF;
+    background-color: #DEE6F0;
+    -moz-box-shadow: 0 0 4px #6A91B7;
+    -webkit-box-shadow: 0 0 4px #6A91B7;
+    box-shadow: 0 0 4px #6A91B7;
+    -moz-border-radius: 7px;
+    -webkit-border-radius: 7px;
+    border-radius: 7px;
+}
+
+div.actions
+{
+    margin-top: 10px;
+    margin-left: 445px;
+}
+
+div.footer
+{
+    padding: 25px;
+    text-align: center;
+}
+
+/***********/
+/* BUTTONS */
+/***********/
+
+.button
+{
+	display: inline-block;
+	zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */
+	*display: inline;
+	vertical-align: baseline;
+	margin: 0 2px;
+	outline: none;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	font: 14px/100% Arial, Helvetica, sans-serif;
+	padding: .5em 2em .55em;
+	text-shadow: 0 1px 1px rgba(0,0,0,.3);
+	-webkit-border-radius: .5em; 
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+	box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+
+.button:hover
+{
+	text-decoration: none;
+}
+
+.button:active
+{
+	position: relative;
+	top: 1px;
+}
+
+.white
+{
+    color: #606060;
+    border: solid 1px #b7b7b7;
+    background: #fff;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ededed));
+    background: -moz-linear-gradient(top,  #fff,  #ededed);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ededed');
+}
+
+.white:hover
+{
+    background: #ededed;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#dcdcdc));
+    background: -moz-linear-gradient(top,  #fff,  #dcdcdc);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dcdcdc');
+}
+
+.white:active
+{
+    color: #999;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#fff));
+    background: -moz-linear-gradient(top,  #ededed,  #fff);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#ffffff');
+}
