@@ -21,45 +21,45 @@ namespace SimpleCMS.Tests.Data
         [Test]
         public void Find_ShouldFindTheRecordById()
         {
-            var original = new User();
+            var original = new Account();
             repository.Save(original);
             session.Clear();
 
-            var record = repository.Find<User>(1);
+            var record = repository.Find<Account>(1);
             Assert.IsTrue(record.Equals(original));
         }
 
         [Test]
         public void Find_ShouldFindTheRecordByCriteria()
         {
-            var original = new User();
+            var original = new Account();
             repository.Save(original);
             session.Clear();
 
-            var record = repository.Find<User>(x => x.Id == 1);
+            var record = repository.Find<Account>(x => x.Id == 1);
             Assert.IsTrue(record.Equals(original));
         }
 
         [Test]
         public void FindAll_ShouldReturnAllRecords()
         {
-            repository.Save(new User());
-            repository.Save(new User());
-            repository.Save(new User());
+            repository.Save(new Account());
+            repository.Save(new Account());
+            repository.Save(new Account());
             session.Clear();
 
-            var recordCount = repository.FindAll<User>().Count;
+            var recordCount = repository.FindAll<Account>().Count;
             Assert.That(recordCount, Is.EqualTo(3));
         }
 
         [Test]
         public void FindAll_ShouldFindRecordsByCriteria()
         {
-            var original = new User();
+            var original = new Account();
             repository.Save(original);
             session.Clear();
 
-            var record = repository.FindAll<User>(x => x.Id == 1);
+            var record = repository.FindAll<Account>(x => x.Id == 1);
             Assert.IsTrue(record[0].Equals(original));
         }
 

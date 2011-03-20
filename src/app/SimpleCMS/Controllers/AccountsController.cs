@@ -1,21 +1,24 @@
 ﻿using System.Web.Mvc;
 using SimpleCMS.Data;
+using SimpleCMS.Infrastructure.Logging;
 using SimpleCMS.Models;
 
 namespace SimpleCMS.Controllers
 {
-    public class UsersController : Controller
+    public class AccountsController : Controller
     {
+        static readonly ILogger logger = LogService.GetCurrentClassLogger();
+
         readonly IRepository repository;
 
-        public UsersController(IRepository repository)
+        public AccountsController(IRepository repository)
         {
             this.repository = repository;
         }
 
         public ViewResult Index()
         {
-            var posts = repository.FindAll<User>();
+            var posts = repository.FindAll<Account>();
             return View(posts);
         }
 
@@ -25,7 +28,7 @@ namespace SimpleCMS.Controllers
         } 
 
         [HttpPost]
-        public ActionResult Create(User user)
+        public ActionResult Create(Account user)
         {
             if (ModelState.IsValid)
             {
@@ -38,12 +41,12 @@ namespace SimpleCMS.Controllers
         
         public ActionResult Edit(int id)
         {
-            var post = repository.Find<User>(x => x.Id == id);
+            var post = repository.Find<Account>(x => x.Id == id);
 			return View(post);
         }
 
         [HttpPost]
-        public ActionResult Edit(User user)
+        public ActionResult Edit(Account user)
         {
             if (ModelState.IsValid)
             {
@@ -56,7 +59,7 @@ namespace SimpleCMS.Controllers
         [HttpPost, ActionName("Delete")]
         public ActionResult Delete(int id)
         {
-            repository.Delete<User>(id);
+            repository.Delete<Account>(id);
             return RedirectToAction("Index");
         }
     }

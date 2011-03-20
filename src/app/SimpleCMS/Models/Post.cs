@@ -9,6 +9,6 @@ namespace SimpleCMS.Models
         [DataType(DataType.MultilineText)]
         [Required(ErrorMessage = "Body is required")]
         public virtual string Body { get; set; }
-        public virtual User Author { get; set; }
+        public virtual Account Author { get; set; }
     }
 }

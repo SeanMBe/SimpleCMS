@@ -195,7 +195,7 @@
     <Compile Include="Controllers\PostsControllerFixture.cs" />
     <Compile Include="Controllers\HomeControllerFixture.cs" />
     <Compile Include="Data\RepositoryFixture.cs" />
-    <Compile Include="Infrastructure\PasswordFixture.cs" />
+    <Compile Include="Services\AccountServiceFixture.cs" />
     <Compile Include="Helpers\StringHelpersFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataSessionHelper.cs" />

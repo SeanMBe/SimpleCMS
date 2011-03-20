@@ -62,13 +62,14 @@ namespace SimpleCMS.Data
             return ascending ? queryOverOrderBuilder.Asc.List() : queryOverOrderBuilder.Desc.List();
         }
 
-        public void Save<T>(T item) where T : DataModel
+        public T Save<T>(T item) where T : DataModel
         {
             using (var transaction = Session.BeginTransaction())
             {
                 item.UpdateForSave();
                 Session.SaveOrUpdate(item);
                 transaction.Commit();
+                return item;
             }
         }
 

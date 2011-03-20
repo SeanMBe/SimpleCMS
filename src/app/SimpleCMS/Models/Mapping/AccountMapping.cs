@@ -2,13 +2,13 @@
 
 namespace SimpleCMS.Models.Mapping
 {
-    public class UserMapping : ClassMap<User>
+    public class AccountMapping : ClassMap<Account>
     {
-        public UserMapping()
+        public AccountMapping()
         {
             Table("User");
             Id(x => x.Id);
-            Map(x => x.UserName);
+            Map(x => x.Email);
         }
     }
 }

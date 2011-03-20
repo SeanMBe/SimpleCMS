@@ -23,10 +23,10 @@
     @if (Model != null) {
         @Html.DropDownList("AuthorId",
             new SelectList(ViewBag.Authors as System.Collections.IEnumerable,
-            "Id", "UserName", Model.Author.Id))
+            "Id", "Email", Model.Author.Id))
     } else {
         @Html.DropDownList("AuthorId",
             new SelectList(ViewBag.Authors as System.Collections.IEnumerable,
-            "Id", "UserName"))
+            "Id", "Email"))
     }
 </div>

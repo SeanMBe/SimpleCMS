@@ -1,4 +1,4 @@
-@model IEnumerable<SimpleCMS.Models.User>
+@model IEnumerable<SimpleCMS.Models.Account>
 
 @{
     ViewBag.Title = "Index";
@@ -9,7 +9,7 @@
 <table>
     <tr>
         <th>
-            UserName
+            Email Address
         </th>
         <th></th>
     </tr>
@@ -17,12 +17,12 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-			@item.UserName
+			@item.Email
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id })
             &nbsp;|&nbsp;
-            @Html.DeleteLink("Delete", @item.Id, @item.UserName)
+            @Html.DeleteLink("Delete", @item.Id, @item.Email)
         </td>
     </tr>
 }

@@ -21,7 +21,7 @@ namespace SimpleCMS.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.Authors = repository.FindAll<User>();
+            ViewBag.Authors = repository.FindAll<Account>();
             return View();
         } 
 
@@ -30,7 +30,7 @@ namespace SimpleCMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                post.Author = repository.Find<User>(x => x.Id == authorId);
+                post.Author = repository.Find<Account>(x => x.Id == authorId);
                 repository.Save(post);
 				return RedirectToAction("Index");  
             }
@@ -40,7 +40,7 @@ namespace SimpleCMS.Controllers
         
         public ActionResult Edit(int id)
         {
-            ViewBag.Authors = repository.FindAll<User>();
+            ViewBag.Authors = repository.FindAll<Account>();
             var post = repository.Find<Post>(x => x.Id == id);
 			return View(post);
         }
@@ -50,11 +50,11 @@ namespace SimpleCMS.Controllers
         {
             if (ModelState.IsValid)
             {
-                post.Author = repository.Find<User>(x => x.Id == authorId);
+                post.Author = repository.Find<Account>(x => x.Id == authorId);
                 repository.Save(post);
                 return RedirectToAction("Index");
             }
-            ViewBag.Authors = repository.FindAll<User>();
+            ViewBag.Authors = repository.FindAll<Account>();
             var refreshedPost = repository.Find<Post>(x => x.Id == post.Id);
             return View(refreshedPost);
         }

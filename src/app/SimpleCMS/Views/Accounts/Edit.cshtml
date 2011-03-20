@@ -1,15 +1,16 @@
-@model SimpleCMS.Models.User
+@model SimpleCMS.Models.Account
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
 }
 
-<h2>Create</h2>
+<h2>Edit</h2>
 
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.Id)
 	@Html.Partial("_CreateOrEdit", Model)
-    @Html.SubmitButton("Create")
+    @Html.SubmitButton("Save")
 }
 
 <div class="actions">
