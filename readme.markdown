@@ -3,15 +3,11 @@ SimpleCMS is an example project using ASP.NET MVC3, NHibernate, Fluent NHibernat
 
 
 ##Links
-NuGet
-Add-BindingRedirect -> Fix older version references
-[source](http://blog.davidebbo.com/2011/01/nuget-versioning-part-3-unification-via.html)
 
-StructureMap Tutorial
-http://www.kevinwilliampang.com/2010/04/06/setting-up-asp-net-mvc-with-fluent-nhibernate-and-structuremap/
+[NuGet Add-BindingRedirect](http://blog.davidebbo.com/2011/01/nuget-versioning-part-3-unification-via.html)
 
-Windsor Tutorial
-http://docs.castleproject.org/Windsor.Windsor-tutorial-ASP-NET-MVC-3-application-To-be-Seen.ashx
+[StructureMap Tutorial](http://www.kevinwilliampang.com/2010/04/06/setting-up-asp-net-mvc-with-fluent-nhibernate-and-structuremap/)
 
-Enabling Unobtrusive Ajax
-http://bradwilson.typepad.com/blog/2010/10/mvc3-unobtrusive-validation.html
+[Windsor Tutorial](http://docs.castleproject.org/Windsor.Windsor-tutorial-ASP-NET-MVC-3-application-To-be-Seen.ashx)
+
+[Enabling Unobtrusive Ajax](http://bradwilson.typepad.com/blog/2010/10/mvc3-unobtrusive-validation.html)
