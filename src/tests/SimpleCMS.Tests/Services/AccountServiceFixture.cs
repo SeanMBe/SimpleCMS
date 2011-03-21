@@ -1,5 +1,5 @@
-﻿using Moq;
-using NUnit.Framework;
+﻿using NUnit.Framework;
+using Rhino.Mocks;
 using SimpleCMS.Data;
 using SimpleCMS.Services;
 
@@ -8,14 +8,14 @@ namespace SimpleCMS.Tests.Services
     [TestFixture]
     public class UserFixture
     {
-        private Mock<IRepository> repository;
+        private IRepository repository;
         private AccountService accountService;
 
         [SetUp]
         public void Setup()
         {
-            repository = new Mock<IRepository>();
-            accountService = new AccountService(repository.Object);
+            repository = MockRepository.GenerateStub<IRepository>();
+            accountService = new AccountService(repository);
         }
 
         [Test]

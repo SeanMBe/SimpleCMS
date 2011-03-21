@@ -19,6 +19,7 @@ namespace SimpleCMS.Data
                 .Database(dbType)
                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<DataModel>())
                 .ExposeConfiguration(c => c.Properties.Add("hbm2ddl.keywords", "none")) //mysql
+                .ExposeConfiguration(c => c.Properties.Add("show_sql", "false"))
                 .ExposeConfiguration(cfg => Configuration = cfg)
                 .BuildSessionFactory();
         }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using Moq;
 using NUnit.Framework;
+using Rhino.Mocks;
 using SimpleCMS.Controllers;
 using SimpleCMS.Data;
 using SimpleCMS.Models;
@@ -11,28 +11,25 @@ namespace SimpleCMS.Tests.Controllers
     [TestFixture]
     public class HomeControllerFixture
     {
-        private Mock<IRepository> repository;
+        private IRepository repository;
         private HomeController controller;
 
         [SetUp]
         public void Setup()
         {
-            repository = new Mock<IRepository>();
-            controller = new HomeController(repository.Object);
+            repository = MockRepository.GenerateStub<IRepository>();
+            controller = new HomeController(repository);
         }
 
         [Test]
         public void Index_ShouldRenderSuccessful()
         {
             var posts = new List<Post>();
-            repository
-                .Setup(x => x.FindAll<Post>(post => post.CreatedDate, true))
-                .Returns(posts);
+            repository.Stub(x => x.FindAll<Post>(post => post.CreatedDate)).IgnoreArguments().Return(posts);
 
-            var result = (ViewResult)controller.Index();
+            var result = controller.Index() as ViewResult;
 
-            var model = result.ViewData.Model;
-            Assert.IsNotNull(model);
+            Assert.IsTrue(result.Model.Equals(posts));
         }
     }
 }

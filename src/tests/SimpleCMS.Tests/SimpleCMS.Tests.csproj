@@ -114,9 +114,6 @@
     <Reference Include="Microsoft.Web.Mvc">
       <HintPath>..\..\..\lib\Mvc3Futures.3.0.20105.0\lib\Microsoft.Web.Mvc.dll</HintPath>
     </Reference> -->
-    <Reference Include="Moq">
-      <HintPath>..\..\..\lib\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
-    </Reference>
     <!--
     <Reference Include="MvcContrib">
       <HintPath>..\..\..\lib\MvcContrib.Mvc3-ci.3.0.60.0\lib\MvcContrib.dll</HintPath>
@@ -128,6 +125,9 @@
     <Reference Include="NHibernate.ByteCode.Castle">
       <HintPath>..\..\..\lib\NHibernate.3.0.0.4000\lib\NHibernate.ByteCode.Castle.dll</HintPath>
     </Reference> -->
+    <Reference Include="MvcContrib.TestHelper">
+      <HintPath>..\..\..\lib\mvccontrib\MvcContrib.TestHelper.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.5.8.10295, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\lib\NUnit.2.5.9.10348\lib\nunit.framework.dll</HintPath>
@@ -164,6 +164,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\lib\NHibernate.3.0.0.4000\lib\NHibernate.ByteCode.Castle.dll</HintPath>
     </Reference>
+    <Reference Include="Rhino.Mocks">
+      <HintPath>..\..\..\lib\RhinoMocks.3.6\lib\Rhino.Mocks.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.SQLite, Version=1.0.66.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
@@ -194,7 +197,10 @@
   <ItemGroup>
     <Compile Include="Controllers\PostsControllerFixture.cs" />
     <Compile Include="Controllers\HomeControllerFixture.cs" />
+    <Compile Include="ControllerExtensions.cs" />
+    <Compile Include="Data\DataSessionFixture.cs" />
     <Compile Include="Data\RepositoryFixture.cs" />
+    <Compile Include="ActionResultExtensions.cs" />
     <Compile Include="Services\AccountServiceFixture.cs" />
     <Compile Include="Helpers\StringHelpersFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -202,6 +208,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
