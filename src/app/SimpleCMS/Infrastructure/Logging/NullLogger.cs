@@ -4,6 +4,11 @@ namespace SimpleCMS.Infrastructure.Logging
 {
     public class NullLogger : ILogger
     {
+        public NullLogger(Type sourceType)
+        {
+            
+        }
+
         public void Debug(object message)
         {
         }

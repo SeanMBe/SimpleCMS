@@ -18,6 +18,7 @@ namespace SimpleCMS.Data
                 .Configure()
                 .Database(dbType)
                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<DataModel>())
+                .ExposeConfiguration(c => c.Properties.Add("hbm2ddl.keywords", "none")) //mysql
                 .ExposeConfiguration(cfg => Configuration = cfg)
                 .BuildSessionFactory();
         }
@@ -30,6 +31,25 @@ namespace SimpleCMS.Data
         {
             var export = new SchemaExport(Configuration);
             export.Execute(true, true, false, session.Connection, null);
+        }
+
+        public static DataSession InMemoryDataSession()
+        {
+            return new DataSession(SQLiteConfiguration.Standard.InMemory());
+        }
+
+        public static DataSession FileDataSession()
+        {
+            return new DataSession(SQLiteConfiguration
+                        .Standard
+                        .ConnectionString(c => c.FromConnectionStringWithKey("db_connection")));
+        }
+
+        public static DataSession MySqlDataSession()
+        {
+            return new DataSession(MySQLConfiguration
+                        .Standard
+                        .ConnectionString(c => c.FromConnectionStringWithKey("db_connection")));
         }
     }
 }

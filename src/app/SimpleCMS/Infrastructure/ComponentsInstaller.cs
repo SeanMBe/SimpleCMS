@@ -4,7 +4,6 @@ using Castle.Core;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
-using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using SimpleCMS.Data;
 
@@ -14,10 +13,18 @@ namespace SimpleCMS.Infrastructure
     {
         public static DataSession GetDataSession()
         {
-            var connectionString = ConfigurationManager.AppSettings["sql_lite"];
-            return new DataSession(SQLiteConfiguration
-                .Standard
-                .ConnectionString(connectionString));
+            var environment = ConfigurationManager.AppSettings["Environment"];
+
+            if (string.IsNullOrEmpty(environment))
+                return DataSession.FileDataSession();
+
+            switch (environment)
+            {
+                case "Release":
+                    return DataSession.MySqlDataSession();
+                default:
+                    return DataSession.FileDataSession();
+            }
         }
 
         public void Install(IWindsorContainer container, IConfigurationStore store)

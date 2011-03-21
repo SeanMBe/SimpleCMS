@@ -1,5 +1,4 @@
-﻿using FluentNHibernate.Cfg.Db;
-using NHibernate;
+﻿using NHibernate;
 using SimpleCMS.Data;
 
 namespace SimpleCMS.Tests
@@ -11,7 +10,7 @@ namespace SimpleCMS.Tests
         public static ISession GetSession()
         {
             if (DataSession == null)
-                DataSession = new DataSession(SQLiteConfiguration.Standard.InMemory());
+                DataSession = DataSession.InMemoryDataSession();
             if (SessionFactory == null)
                 SessionFactory = DataSession.SessionFactory;
             var session = SessionFactory.OpenSession();

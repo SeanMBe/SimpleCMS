@@ -21,6 +21,13 @@ namespace SimpleCMS.Infrastructure
             AreaRegistration.RegisterAllAreas();
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+            EnablingUnobtrusiveAjax();
+        }
+
+        static void EnablingUnobtrusiveAjax()
+        {
+            HtmlHelper.ClientValidationEnabled = true;
+            HtmlHelper.UnobtrusiveJavaScriptEnabled = true;
         }
 
         static void RegisterGlobalFilters(GlobalFilterCollection filters)
