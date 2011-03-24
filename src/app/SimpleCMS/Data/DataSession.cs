@@ -39,7 +39,6 @@ namespace SimpleCMS.Data
             cfg.ExposeConfiguration(c =>
                                         {
                                             c.Properties.Add("hbm2ddl.keywords", "none"); //fix for mysql
-                                            c.Properties.Add("show_sql", "false");
                                             Configuration = c;
                                         });
 

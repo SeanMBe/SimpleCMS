@@ -1,9 +1,9 @@
-PROJECT = "SimpleCMS"
+PROJECT_NAME = "SimpleCMS"
 BUILD_CONFIG = "Debug"
 
-def build target_name, target
+def build target_name, target, build_config
 	msbuild_path = "C:/Windows/Microsoft.NET/Framework/v4.0.30319/msbuild.exe"
-	config = "#{target_name} /p:Configuration=#{BUILD_CONFIG} /t:#{target} /nologo /verbosity:minimal"
+	config = "#{target_name} /p:Configuration=#{build_config} /t:#{target} /nologo /verbosity:minimal"
 	sh "#{msbuild_path} #{config}"
 end
 
@@ -16,22 +16,22 @@ end
 task :default => [:clean, :compile, :test]
 
 task :clean do
-	build "#{PROJECT}.sln", "clean"
+	build "#{PROJECT_NAME}.sln", "clean", BUILD_CONFIG
 end
 
 task :compile => [:clean] do
-	build "#{PROJECT}.sln", "build"
+	build "#{PROJECT_NAME}.sln", "build", BUILD_CONFIG
 end
 
 task :test => [:compile] do
-	test "#{PROJECT}.Tests"
+	test "#{PROJECT_NAME}.Tests"
 end
 
 task :build_console do
 	project_name = "src/app/SimpleCMS.Sandbox/SimpleCMS.Sandbox.csproj"
-	build project_name, "build"
+	build project_name, "build", BUILD_CONFIG
 end
 
 task :db => [:build_console] do
-	sh "src\\app\\SimpleCMS.Sandbox\\bin\\#{BUILD_CONFIG}\\SimpleCMS.Sandbox.exe"
+	sh "cd src\\app\\SimpleCMS.Sandbox\\bin\\#{BUILD_CONFIG} && SimpleCMS.Sandbox.exe"
 end

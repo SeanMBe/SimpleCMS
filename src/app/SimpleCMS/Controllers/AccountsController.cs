@@ -1,14 +1,11 @@
 ﻿using System.Web.Mvc;
 using SimpleCMS.Data;
-using SimpleCMS.Infrastructure.Logging;
 using SimpleCMS.Models;
 
 namespace SimpleCMS.Controllers
 {
     public class AccountsController : Controller
     {
-        static readonly ILogger logger = LogService.GetCurrentClassLogger();
-
         readonly IRepository repository;
 
         public AccountsController(IRepository repository)
