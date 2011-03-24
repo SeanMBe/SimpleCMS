@@ -1,5 +1,4 @@
-﻿using FluentNHibernate.Cfg.Db;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using SimpleCMS.Data;
 
 namespace SimpleCMS.Tests.Data
@@ -10,7 +9,7 @@ namespace SimpleCMS.Tests.Data
         [Test]
         public void Constructor_ShouldSetConfigurationAndSessionFactory()
         {
-            var dataSession = new DataSession(SQLiteConfiguration.Standard.InMemory());
+            var dataSession = DataSession.InMemoryDataSession();
 
             Assert.That(dataSession.Configuration, Is.Not.Null);
             Assert.That(dataSession.SessionFactory, Is.Not.Null);

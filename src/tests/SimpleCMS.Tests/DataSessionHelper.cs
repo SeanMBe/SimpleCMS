@@ -13,9 +13,7 @@ namespace SimpleCMS.Tests
                 DataSession = DataSession.InMemoryDataSession();
             if (SessionFactory == null)
                 SessionFactory = DataSession.SessionFactory;
-            var session = SessionFactory.OpenSession();
-            DataSession.BuildSchema(session);
-            return session;
+            return DataSession.BuildSchema();
         }
     }
 }

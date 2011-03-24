@@ -3,6 +3,7 @@ SimpleCMS is an example project using ASP.NET MVC3, NHibernate, Fluent NHibernat
 
 
 ##Links
+[SQLite on .Net 4](http://www.meadow.se/wordpress/?p=393)
 
 [NuGet Add-BindingRedirect](http://blog.davidebbo.com/2011/01/nuget-versioning-part-3-unification-via.html)
 

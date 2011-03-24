@@ -1,24 +1,37 @@
 PROJECT = "SimpleCMS"
 BUILD_CONFIG = "Debug"
-MSBUILD_PATH = "C:/Windows/Microsoft.NET/Framework/v4.0.30319/msbuild.exe"
-NUNIT_PATH = "lib/NUnit.2.5.9.10348/tools/nunit-console.exe"
+
+def build target_name, target
+	msbuild_path = "C:/Windows/Microsoft.NET/Framework/v4.0.30319/msbuild.exe"
+	config = "#{target_name} /p:Configuration=#{BUILD_CONFIG} /t:#{target} /nologo /verbosity:minimal"
+	sh "#{msbuild_path} #{config}"
+end
+
+def test test_project_name
+	nunit_path = "lib/NUnit.2.5.9.10348/tools/nunit-console.exe"
+	config = "src/tests/#{test_project_name}/bin/#{BUILD_CONFIG}/#{test_project_name}.dll /xml=build/#{test_project_name}.xml /nologo"
+	sh "#{nunit_path} #{config}"
+end
 
 task :default => [:clean, :compile, :test]
 
 task :clean do
-	SOLUTION_NAME = "#{PROJECT}.sln"
-	CONFIG = "/p:Configuration=#{BUILD_CONFIG} #{SOLUTION_NAME} /t:clean /nologo /verbosity:minimal"
-	sh "#{MSBUILD_PATH} #{CONFIG}"
+	build "#{PROJECT}.sln", "clean"
 end
 
 task :compile => [:clean] do
-	SOLUTION_NAME = "#{PROJECT}.sln"
-	CONFIG = "/p:Configuration=#{BUILD_CONFIG} #{SOLUTION_NAME} /t:build /nologo /verbosity:minimal"
-	sh "#{MSBUILD_PATH} #{CONFIG}"
+	build "#{PROJECT}.sln", "build"
 end
 
 task :test => [:compile] do
-	TEST_PROJECT_NAME = "#{PROJECT}.Tests"
-	CONFIG = "src/tests/#{TEST_PROJECT_NAME}/bin/#{BUILD_CONFIG}/#{TEST_PROJECT_NAME}.dll /xml=build/#{TEST_PROJECT_NAME}.xml /nologo"
-	sh "#{NUNIT_PATH} #{CONFIG}"
+	test "#{PROJECT}.Tests"
+end
+
+task :build_console do
+	project_name = "src/app/SimpleCMS.Sandbox/SimpleCMS.Sandbox.csproj"
+	build project_name, "build"
+end
+
+task :db => [:build_console] do
+	sh "src\\app\\SimpleCMS.Sandbox\\bin\\#{BUILD_CONFIG}\\SimpleCMS.Sandbox.exe"
 end
