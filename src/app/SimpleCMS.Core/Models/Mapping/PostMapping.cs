@@ -1,6 +1,6 @@
 ﻿using FluentNHibernate.Mapping;
 
-namespace SimpleCMS.Models.Mapping
+namespace SimpleCMS.Core.Models.Mapping
 {
     public class PostMapping : ClassMap<Post>
     {

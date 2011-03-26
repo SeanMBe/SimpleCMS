@@ -3,8 +3,8 @@ using System.Web.Mvc;
 using NUnit.Framework;
 using Rhino.Mocks;
 using SimpleCMS.Controllers;
-using SimpleCMS.Data;
-using SimpleCMS.Models;
+using SimpleCMS.Core.Data;
+using SimpleCMS.Core.Models;
 
 namespace SimpleCMS.Tests.Controllers
 {

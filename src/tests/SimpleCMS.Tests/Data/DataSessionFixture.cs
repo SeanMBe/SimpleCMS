@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using SimpleCMS.Data;
+using SimpleCMS.Core.Data;
 
 namespace SimpleCMS.Tests.Data
 {

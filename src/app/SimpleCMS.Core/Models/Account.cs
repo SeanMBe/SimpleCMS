@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace SimpleCMS.Models
+namespace SimpleCMS.Core.Models
 {
     public class Account : DataModel
     {

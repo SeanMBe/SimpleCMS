@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using Rhino.Mocks;
-using SimpleCMS.Data;
-using SimpleCMS.Services;
+using SimpleCMS.Core.Data;
+using SimpleCMS.Core.Services;
 
 namespace SimpleCMS.Tests.Services
 {

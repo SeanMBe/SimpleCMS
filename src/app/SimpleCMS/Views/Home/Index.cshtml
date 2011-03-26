@@ -6,7 +6,7 @@
 @foreach (Post item in Model) {
     <div class="post">
         <b>@item.Title</b>
-        <p>@item.Body</p>
+        <p>@Html.Raw(item.Body.AutoLink().ToSimpleFormat())</p>
         <div class="author">
             posted by @item.Author.Email
             at @Html.FriendlyDate(item.CreatedDate)

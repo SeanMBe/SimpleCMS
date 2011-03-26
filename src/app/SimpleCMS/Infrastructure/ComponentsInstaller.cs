@@ -5,7 +5,7 @@ using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using NHibernate;
-using SimpleCMS.Data;
+using SimpleCMS.Core.Data;
 
 namespace SimpleCMS.Infrastructure
 {
@@ -38,6 +38,12 @@ namespace SimpleCMS.Infrastructure
 
             container.Register(AllTypes
                 .FromThisAssembly()
+                .Pick()
+                .Configure(c => c.LifeStyle.Is(LifestyleType.Transient))
+                .WithService.FirstInterface());
+
+            container.Register(AllTypes
+                .FromAssemblyContaining<Repository>()
                 .Pick()
                 .Configure(c => c.LifeStyle.Is(LifestyleType.Transient))
                 .WithService.FirstInterface());

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Security.Cryptography;
 using System.Text;
-using SimpleCMS.Data;
-using SimpleCMS.Models;
+using SimpleCMS.Core.Data;
+using SimpleCMS.Core.Models;
 
-namespace SimpleCMS.Services
+namespace SimpleCMS.Core.Services
 {
     public class AccountService
     {

@@ -202,7 +202,6 @@
     <Compile Include="Data\RepositoryFixture.cs" />
     <Compile Include="ActionResultExtensions.cs" />
     <Compile Include="Services\AccountServiceFixture.cs" />
-    <Compile Include="Helpers\StringHelpersFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataSessionHelper.cs" />
   </ItemGroup>
@@ -211,6 +210,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\..\app\SimpleCMS.Core\SimpleCMS.Core.csproj">
+      <Project>{DD4F2E44-51C2-4621-A204-5C891B60BB46}</Project>
+      <Name>SimpleCMS.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\app\SimpleCMS\SimpleCMS.csproj">
       <Project>{4B07BCBA-53C0-40B3-B0A6-C57A30E6E494}</Project>
       <Name>SimpleCMS</Name>

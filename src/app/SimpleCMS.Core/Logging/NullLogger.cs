@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SimpleCMS.Infrastructure.Logging
+namespace SimpleCMS.Core.Logging
 {
     public class NullLogger : ILogger
     {

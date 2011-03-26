@@ -1,0 +1,28 @@
+﻿@using SimpleCMS.Helpers
+@model List<Post>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+@using (Html.BeginForm("Search", "Posts", FormMethod.Get)) {
+    @Html.TextBox("searchString")
+    @Html.SubmitButton("Search")
+}
+
+Total @Model.Count @("Post".Pluralize(@Model.Count)) found
+
+@foreach (Post item in Model)
+{
+    <div class="post">
+        <b>@item.Title</b>
+        @{string searchString = ViewBag.SearchString;}
+
+        <p>@Html.Raw(item.Body.Excerpt(searchString, 30).Highlight(searchString))</p>
+        <div class="author">
+            posted by @item.Author.Email
+            at @Html.FriendlyDate(item.CreatedDate)
+        </div>
+        <div class="clear"></div>
+    </div>
+}

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Configuration;
 using NHibernate;
-using SimpleCMS.Data;
-using SimpleCMS.Models;
+using SimpleCMS.Core.Data;
+using SimpleCMS.Core.Models;
 
 namespace SimpleCMS.Sandbox
 {
@@ -10,15 +10,20 @@ namespace SimpleCMS.Sandbox
     {
         static void Main()
         {
+            Console.WriteLine("Executing database generation...");
+
             var dataSession = DataSession.FileDataSession();
             var session = GenerateSchema(dataSession);
             GenerateSchemaSql(dataSession);
             SeedData(session);
+
+            Console.WriteLine("Database generation complete");
         }
 
         private static void SeedData(ISession session)
         {
             Console.WriteLine("Seeding data...");
+
             var repository = new Repository(session);
             var user = repository.Save(new Account { Email = "Tom Bombadil" });
             repository.Save(new Account { Email = "Bilbo Bagins" });
@@ -30,6 +35,7 @@ namespace SimpleCMS.Sandbox
         private static void GenerateSchemaSql(DataSession dataSession)
         {
             Console.WriteLine("Generating sql...");
+
             var exportFilePath = ConfigurationManager.AppSettings["sql_export"];
             dataSession.ExportSchema(exportFilePath);
         }
@@ -37,6 +43,7 @@ namespace SimpleCMS.Sandbox
         private static ISession GenerateSchema(DataSession dataSession)
         {
             Console.WriteLine("Generate schema...");
+
             return dataSession.BuildSchema();
         }
     }

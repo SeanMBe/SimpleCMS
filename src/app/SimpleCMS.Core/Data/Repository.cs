@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using NHibernate;
-using SimpleCMS.Models;
+using SimpleCMS.Core.Models;
 
-namespace SimpleCMS.Data
+namespace SimpleCMS.Core.Data
 {
     public class Repository : IRepository
     {

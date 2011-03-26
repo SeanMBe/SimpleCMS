@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Web.Mvc;
 
-namespace SimpleCMS.Models
+namespace SimpleCMS.Core.Models
 {
     public class DataModel
     {

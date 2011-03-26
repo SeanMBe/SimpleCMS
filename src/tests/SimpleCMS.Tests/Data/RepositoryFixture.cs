@@ -1,7 +1,7 @@
 ﻿using NHibernate;
 using NUnit.Framework;
-using SimpleCMS.Data;
-using SimpleCMS.Models;
+using SimpleCMS.Core.Data;
+using SimpleCMS.Core.Models;
 
 namespace SimpleCMS.Tests.Data
 {

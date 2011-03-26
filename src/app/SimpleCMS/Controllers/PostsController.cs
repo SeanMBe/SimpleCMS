@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using System.Web.Mvc;
-using SimpleCMS.Data;
-using SimpleCMS.Models;
+using NHibernate.Criterion;
+using SimpleCMS.Core.Data;
+using SimpleCMS.Core.Models;
 
 namespace SimpleCMS.Controllers
 {   
@@ -17,6 +19,22 @@ namespace SimpleCMS.Controllers
         {
             var posts = repository.FindAll<Post>();
             return View(posts);
+        }
+
+        public ViewResult Search(string searchString)
+        {
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                ViewBag.SearchString = searchString;
+                var wildCardSearch = string.Format("%{0}%", searchString);
+                var posts = repository.Session
+                    .QueryOver<Post>()
+                    .WhereRestrictionOn(p => p.Body)
+                    .IsLike(wildCardSearch)
+                    .List();
+                return View(posts);
+            }
+            return View(new List<Post>());
         }
 
         public ActionResult Create()

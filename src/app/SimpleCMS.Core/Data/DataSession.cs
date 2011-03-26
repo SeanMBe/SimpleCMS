@@ -1,11 +1,11 @@
 ﻿using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
+using NHibernate.Cfg;
 using NHibernate.Tool.hbm2ddl;
-using SimpleCMS.Models;
-using Configuration = NHibernate.Cfg.Configuration;
+using SimpleCMS.Core.Models;
 
-namespace SimpleCMS.Data
+namespace SimpleCMS.Core.Data
 {
     public class DataSession
     {

@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
-using SimpleCMS.Data;
+using SimpleCMS.Core.Data;
+using SimpleCMS.Core.Models;
 using SimpleCMS.Infrastructure;
-using SimpleCMS.Models;
 
 namespace SimpleCMS.Controllers
 {

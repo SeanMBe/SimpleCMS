@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Configuration;
 using System.Diagnostics;
+using SimpleCMS.Core.Logging;
 
-namespace SimpleCMS.Infrastructure.Logging
+namespace SimpleCMS.Core.Services
 {
     public static class LogService
     {

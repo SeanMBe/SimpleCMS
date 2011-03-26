@@ -1,6 +1,7 @@
 ﻿using System;
+using SimpleCMS.Core.Logging;
+using SimpleCMS.Core.Services;
 using SimpleCMS.Infrastructure;
-using SimpleCMS.Infrastructure.Logging;
 
 namespace SimpleCMS
 {

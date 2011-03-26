@@ -1,4 +1,4 @@
-@model IEnumerable<SimpleCMS.Models.Post>
+@model IEnumerable<Post>
 
 @{
     ViewBag.Title = "Index";
@@ -26,7 +26,7 @@
 			@item.Title
         </td>
         <td>
-			@item.Body.Ellipsify(50)
+			@item.Body.Truncate(50)
         </td>
         <td>
 			@(item.Author == null ? "None" : item.Author.Email)

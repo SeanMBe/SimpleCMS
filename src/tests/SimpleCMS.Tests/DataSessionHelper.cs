@@ -1,5 +1,5 @@
 ﻿using NHibernate;
-using SimpleCMS.Data;
+using SimpleCMS.Core.Data;
 
 namespace SimpleCMS.Tests
 {
