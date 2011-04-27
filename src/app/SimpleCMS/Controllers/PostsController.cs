@@ -21,16 +21,26 @@ namespace SimpleCMS.Controllers
             return View(posts);
         }
 
-        public ViewResult Search(string searchString)
+        public ViewResult Details(int id)
         {
-            if (!string.IsNullOrEmpty(searchString))
+            var post = repository.Find<Post>(id);
+            return View(post);
+        }
+
+        public ViewResult Search(string query)
+        {
+            if (!string.IsNullOrEmpty(query))
             {
-                ViewBag.SearchString = searchString;
-                var wildCardSearch = string.Format("%{0}%", searchString);
-                var posts = repository.Session
+                ViewBag.Query = query;
+                var wildCardSearch = string.Format("%{0}%", query);
+
+                var matchTitle = Restrictions.On<Post>(p => p.Title).IsLike(wildCardSearch);
+                var matchBody = Restrictions.On<Post>(p => p.Body).IsLike(wildCardSearch);
+
+                var posts = repository
+                    .Session
                     .QueryOver<Post>()
-                    .WhereRestrictionOn(p => p.Body)
-                    .IsLike(wildCardSearch)
+                    .Where(matchTitle || matchBody)
                     .List();
                 return View(posts);
             }

@@ -6,23 +6,16 @@
 }
 
 @using (Html.BeginForm("Search", "Posts", FormMethod.Get)) {
-    @Html.TextBox("searchString")
-    @Html.SubmitButton("Search")
+    @Html.TextBox("query")
+    @Html.Submit("Search")
 }
 
-Total @Model.Count @("Post".Pluralize(@Model.Count)) found
+<p>Total @Model.Count @("Post".Pluralize(@Model.Count)) found</p>
 
 @foreach (Post item in Model)
 {
-    <div class="post">
-        <b>@item.Title</b>
-        @{string searchString = ViewBag.SearchString;}
-
-        <p>@Html.Raw(item.Body.Excerpt(searchString, 30).Highlight(searchString))</p>
-        <div class="author">
-            posted by @item.Author.Email
-            at @Html.FriendlyDate(item.CreatedDate)
-        </div>
-        <div class="clear"></div>
+    <div class="search-result">
+        @Html.ActionLink(item.Title, "Details", new { id = item.Id })<br />
+        @Html.PostSearchResult(item, ViewBag.Query as string);
     </div>
 }

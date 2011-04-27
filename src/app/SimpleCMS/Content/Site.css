@@ -51,7 +51,7 @@ div.top
     border-bottom: 1px solid #CCC;
 }
 
-div.top_container, div.content
+div.top-container, div.content
 {
     width: 800px;
     margin: auto;
@@ -170,7 +170,13 @@ div.post
     border-radius: 7px;
 }
 
-div.post .author
+div.search-result
+{
+    padding: 8px 8px 8px 8px;
+    margin-bottom: 15px;
+}
+
+div.author
 {
     float: right;
 }

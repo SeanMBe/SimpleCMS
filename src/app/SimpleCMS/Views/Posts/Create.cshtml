@@ -9,7 +9,7 @@
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
 	@Html.Partial("_CreateOrEdit", Model)
-    @Html.SubmitButton("Create")
+    @Html.Submit("Create")
 }
 
 <div class="actions">

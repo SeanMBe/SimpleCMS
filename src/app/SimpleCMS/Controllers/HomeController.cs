@@ -1,7 +1,6 @@
 ﻿using System.Web.Mvc;
 using SimpleCMS.Core.Data;
 using SimpleCMS.Core.Models;
-using SimpleCMS.Infrastructure;
 
 namespace SimpleCMS.Controllers
 {

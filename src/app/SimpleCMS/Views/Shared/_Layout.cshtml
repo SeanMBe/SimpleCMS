@@ -4,6 +4,9 @@
     <title>@ViewBag.Title</title>
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
     <link href="@Url.Content("~/Content/DataAnnotations.css")" rel="stylesheet" type="text/css" />
+    <!--[if lt IE 9]>
+        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
     <script src="@Url.Content("~/Scripts/jquery-1.4.4.min.js")" type="text/javascript"></script>
     <script type="text/javascript">
         function deleteRecord(url, confirm_text) {
@@ -21,7 +24,7 @@
 </head>
 <body>
     <div class="top">
-        <div class="top_container">
+        <div class="top-container">
             <div class="logo">
                 @Html.ActionLink("SimpleCMS", "Index", "Home")
             </div>
