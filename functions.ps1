@@ -1,5 +1,4 @@
-﻿[System.Reflection.Assembly]::LoadWithPartialName("Microsoft.Web.Administration")
-$iis = new-object Microsoft.Web.Administration.ServerManager
+﻿Import-Module WebAdministration;
 
 function createAppDirectory($webdir, $siteName) {
 	Write-Host "app directory..." -nonewline
@@ -23,51 +22,53 @@ function removeAppDirectory($webdir, $siteName) {
 
 function createAppPool($siteName) {
 	Write-Host "app pool..." -nonewline
-	if ($iis.ApplicationPools["$siteName"]) {
+	if (Test-Path "IIS:\AppPools\$siteName") {
 		Write-Host "already exists"
 	} else {
-		$appPool = $iis.ApplicationPools.Add("$siteName");
-		$apppool.ManagedRuntimeVersion = "v4.0";
-		$apppool.Enable32BitAppOnWin64 = $TRUE
-		$apppool.ManagedPipelineMode = 0; #integrated mode
-		$appPool.processModel.identityType = "ApplicationPoolIdentity"
-		$iis.CommitChanges();
+		$appPool = new-item "IIS:\AppPools\$siteName"
+		Set-ItemProperty "IIS:\AppPools\$siteName" -name managedPipelineMode -value 0 #Integrated
+		Set-ItemProperty "IIS:\AppPools\$siteName" -name managedRuntimeVersion -value "v4.0" #Runtime
 		Write-Host "created"
 	}
 }
 
 function removeAppPool($siteName) {
 	Write-Host "app pool..." -nonewline
-	if ($iis.ApplicationPools["$siteName"]) {
-		$iis.ApplicationPools.Remove($iis.ApplicationPools["$siteName"]);
-		$iis.CommitChanges();
+	if (Test-Path "IIS:\AppPools\$siteName") {
+		Remove-Item "IIS:\AppPools\$siteName" -Recurse -WarningAction SilentlyContinue
 		Write-Host "removed"
 	} else {
 		Write-Host "does not exist"
 	}
 }
 
-function createIISSite($webdir, $siteName, $hostName, $httpPortNumber) {
+function createIISSite($webdir, $siteName) {
 	Write-Host "iis site..." -nonewline
-	if ($iis.Sites["$siteName"]) {
+	if (Test-Path "IIS:\Sites\$siteName") {
 		Write-Host "already exists"
 	} else {
-		#httpPortNumber
-		$webSite = $iis.Sites.Add("$siteName","http", ":80:$hostName", "$webdir\$siteName");
-		$webSite.Applications[0].ApplicationPoolName = "$siteName";
-		$webSite.ServerAutoStart = $TRUE;
-		$iis.CommitChanges();
+		$httpBinding = "*:" + $httpPortNumber + ":" + $hostName
+		$bindings = @() + @{protocol="http";bindingInformation=$httpBinding} 
+		new-item "IIS:\Sites\$siteName" -bindings $bindings -physicalPath "$webdir\$siteName" | Out-Null
+		set-itemproperty "IIS:\Sites\$siteName" -name applicationpool -value "$siteName" | Out-Null
+		set-itemproperty "IIS:\Sites\$siteName" -name logFile.directory -value $logdir | Out-Null
 		Write-Host "created"
 	}
 }
 
-function removeIISSite($siteName) {
+function removeIISSite($webdir, $siteName) {
 	Write-Host "iis site..." -nonewline
-	if ($iis.Sites["$siteName"]) {
-		$iis.Sites.Remove($iis.Sites["$siteName"])
-		$iis.CommitChanges();
+	if (Test-Path "IIS:\Sites\$siteName") {
+		Remove-Item "IIS:\Sites\$siteName" -Recurse -WarningAction SilentlyContinue
 		Write-Host "removed"
 	} else {
 		Write-Host "does not exist"
 	}
+}
+
+function setIISDefaults() {
+	Write-Host "setting iis defaults..."
+	$filter = "/system.applicationHost/applicationpools/applicationPoolDefaults"
+	$name = "enable32BitAppOnWin64"
+	Set-WebConfigurationProperty -filter $filter -name $name -value "false"
 }
