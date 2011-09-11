@@ -1,1 +1,0 @@
-powershell ./deploy.ps1 -siteName simplecms -hostName localhost

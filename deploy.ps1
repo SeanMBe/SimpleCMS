@@ -26,7 +26,7 @@ if([string]::IsNullOrEmpty($hostName) -or [string]::IsNullOrEmpty($siteName)) {
 . .\functions.ps1
 
 function clean($webdir, $siteName) {
-	removeIISSite $webdir $siteName
+	removeIISSite $siteName
 	removeAppPool $siteName
 	removeAppDirectory $webdir $siteName
 	Write-Host "cleaning completed" -ForegroundColor Green
@@ -35,8 +35,7 @@ function clean($webdir, $siteName) {
 function deploy($webdir, $siteName) {
 	createAppDirectory $webdir $siteName
 	createAppPool $siteName
-	createIISSite $webdir $siteName
-	setIISDefaults
+	createIISSite $webdir $siteName $hostName $httpPortNumber
 	Write-Host "deploy completed"  -ForegroundColor Green
 }
 
