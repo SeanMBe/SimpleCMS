@@ -7,31 +7,31 @@ using SimpleCMS.Core.Models;
 
 namespace SimpleCMS.Core.Data
 {
-    public class DataSession
+    public class DataProvider
     {
         public Configuration Configuration { get; private set; }
         public ISessionFactory SessionFactory { get; private set; }
 
-        public static DataSession InMemoryDataSession()
+        public static DataProvider InMemoryDataSession()
         {
-            return new DataSession(SQLiteConfiguration.Standard.InMemory());
+            return new DataProvider(SQLiteConfiguration.Standard.InMemory());
         }
 
-        public static DataSession FileDataSession()
+        public static DataProvider FileDataSession()
         {
-            return new DataSession(SQLiteConfiguration
+            return new DataProvider(SQLiteConfiguration
                         .Standard
                         .ConnectionString(c => c.FromConnectionStringWithKey("db_connection")));
         }
 
-        public static DataSession MySqlDataSession()
+        public static DataProvider MySqlDataSession()
         {
-            return new DataSession(MySQLConfiguration
+            return new DataProvider(MySQLConfiguration
                         .Standard
                         .ConnectionString(c => c.FromConnectionStringWithKey("db_connection")));
         }
 
-        protected DataSession(IPersistenceConfigurer dbType)
+        protected DataProvider(IPersistenceConfigurer dbType)
         {
             var cfg = Fluently.Configure();
             cfg.Database(dbType);
@@ -45,9 +45,6 @@ namespace SimpleCMS.Core.Data
             SessionFactory = cfg.BuildSessionFactory();
         }
 
-        /// <summary>
-        /// </summary>
-        /// <returns>Shared for testing purposes</returns>
         public ISession BuildSchema()
         {
             var session = SessionFactory.OpenSession();

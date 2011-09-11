@@ -35,3 +35,11 @@ end
 task :db => [:build_console] do
 	sh "cd src\\app\\SimpleCMS.Sandbox\\bin\\#{BUILD_CONFIG} && SimpleCMS.Sandbox.exe"
 end
+
+task :install do
+	sh "powershell ./deploy.ps1 -siteName simplecms -hostName localhost"
+end
+
+task :uninstall do
+	sh "powershell ./deploy.ps1 -siteName simplecms -hostName localhost -clean true"
+end

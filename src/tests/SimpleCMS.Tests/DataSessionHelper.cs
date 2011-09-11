@@ -5,15 +5,15 @@ namespace SimpleCMS.Tests
 {
     public class DataSessionHelper
     {
-        protected static DataSession DataSession;
+        protected static DataProvider DataProvider;
         protected static ISessionFactory SessionFactory;
         public static ISession GetSession()
         {
-            if (DataSession == null)
-                DataSession = DataSession.InMemoryDataSession();
+            if (DataProvider == null)
+                DataProvider = DataProvider.InMemoryDataSession();
             if (SessionFactory == null)
-                SessionFactory = DataSession.SessionFactory;
-            return DataSession.BuildSchema();
+                SessionFactory = DataProvider.SessionFactory;
+            return DataProvider.BuildSchema();
         }
     }
 }

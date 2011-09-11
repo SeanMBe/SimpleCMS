@@ -9,7 +9,7 @@ namespace SimpleCMS.Tests.Data
         [Test]
         public void Constructor_ShouldSetConfigurationAndSessionFactory()
         {
-            var dataSession = DataSession.InMemoryDataSession();
+            var dataSession = DataProvider.InMemoryDataSession();
 
             Assert.That(dataSession.Configuration, Is.Not.Null);
             Assert.That(dataSession.SessionFactory, Is.Not.Null);

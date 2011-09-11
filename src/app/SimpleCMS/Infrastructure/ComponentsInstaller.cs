@@ -11,19 +11,19 @@ namespace SimpleCMS.Infrastructure
 {
     public class ComponentsInstaller : IWindsorInstaller
     {
-        public static DataSession GetDataSession()
+        public static DataProvider GetDataSession()
         {
             var environment = ConfigurationManager.AppSettings["Environment"];
 
             if (string.IsNullOrEmpty(environment))
-                return DataSession.FileDataSession();
+                return DataProvider.FileDataSession();
 
             switch (environment)
             {
                 case "Release":
-                    return DataSession.MySqlDataSession();
+                    return DataProvider.MySqlDataSession();
                 default:
-                    return DataSession.FileDataSession();
+                    return DataProvider.FileDataSession();
             }
         }
 

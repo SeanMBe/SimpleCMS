@@ -12,7 +12,7 @@ namespace SimpleCMS.Sandbox
         {
             Console.WriteLine("Executing database generation...");
 
-            var dataSession = DataSession.FileDataSession();
+            var dataSession = DataProvider.FileDataSession();
             var session = GenerateSchema(dataSession);
             GenerateSchemaSql(dataSession);
             SeedData(session);
@@ -32,19 +32,19 @@ namespace SimpleCMS.Sandbox
             repository.Save(new Post { Title = "Sample Post", Body = body, Author = user });
         }
 
-        private static void GenerateSchemaSql(DataSession dataSession)
+        private static void GenerateSchemaSql(DataProvider dataProvider)
         {
             Console.WriteLine("Generating sql...");
 
             var exportFilePath = ConfigurationManager.AppSettings["sql_export"];
-            dataSession.ExportSchema(exportFilePath);
+            dataProvider.ExportSchema(exportFilePath);
         }
 
-        private static ISession GenerateSchema(DataSession dataSession)
+        private static ISession GenerateSchema(DataProvider dataProvider)
         {
             Console.WriteLine("Generate schema...");
 
-            return dataSession.BuildSchema();
+            return dataProvider.BuildSchema();
         }
     }
 }

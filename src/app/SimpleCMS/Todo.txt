@@ -1,0 +1,2 @@
+﻿Real logger
+Test everything
