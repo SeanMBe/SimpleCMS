@@ -13,33 +13,41 @@ def test test_project_name
 	sh "#{nunit_path} #{config}"
 end
 
+#rake -T "shows tasks"
 task :default => [:clean, :compile, :test]
 
+desc "Remove dlls from bin (should be build folder)"
 task :clean do
 	build "#{PROJECT_NAME}.sln", "clean", BUILD_CONFIG
 end
 
+desc "Compile dlls into bin (should be build folder)"
 task :compile => [:clean] do
 	build "#{PROJECT_NAME}.sln", "build", BUILD_CONFIG
 end
 
+desc "Runs mixed unit/integration test suite"
 task :test => [:compile] do
 	test "#{PROJECT_NAME}.Tests"
 end
 
+desc "Compile console application for running db setup"
 task :build_console do
 	project_name = "src/app/SimpleCMS.Sandbox/SimpleCMS.Sandbox.csproj"
 	build project_name, "build", BUILD_CONFIG
 end
 
+desc "Setup database (create & seed)"
 task :db => [:build_console] do
 	sh "cd src\\app\\SimpleCMS.Sandbox\\bin\\#{BUILD_CONFIG} && SimpleCMS.Sandbox.exe"
 end
 
+desc "Setup website in iis"
 task :install do
-	sh "powershell ./deploy.ps1 -siteName simplecms"
+	sh "powershell ./deploy.ps1 -siteName #{PROJECT_NAME}"
 end
 
+desc "Remove website from iis"
 task :uninstall do
-	sh "powershell ./deploy.ps1 -siteName simplecms -clean true"
+	sh "powershell ./deploy.ps1 -siteName #{PROJECT_NAME} -clean true"
 end
