@@ -2,7 +2,6 @@
 obj
 bin
 build
-database.db
 *.csproj.user
 *ReSharper*
 *resharper*
