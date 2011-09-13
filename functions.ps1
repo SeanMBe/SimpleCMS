@@ -29,7 +29,7 @@ function createAppPool($siteName) {
 		$appPool = $iis.ApplicationPools.Add("$siteName");
 		$apppool.ManagedRuntimeVersion = "v4.0";
 		$apppool.Enable32BitAppOnWin64 = $TRUE
-		$apppool.ManagedPipelineMode = 0; #integrated mode
+		$apppool.ManagedPipelineMode = 0; # 0 = integrated, 1 = classic
 		$appPool.processModel.identityType = "ApplicationPoolIdentity"
 		$iis.CommitChanges();
 		Write-Host "created"
@@ -47,13 +47,12 @@ function removeAppPool($siteName) {
 	}
 }
 
-function createIISSite($webdir, $siteName, $hostName, $httpPortNumber) {
+function createIISSite($webdir, $siteName, $hostName) {
 	Write-Host "iis site..." -nonewline
 	if ($iis.Sites["$siteName"]) {
 		Write-Host "already exists"
 	} else {
-		#httpPortNumber
-		$webSite = $iis.Sites.Add("$siteName","http", ":80:$hostName", "$webdir\$siteName");
+		$webSite = $iis.Sites.Add("$siteName","http", $hostName, "$webdir\$siteName");
 		$webSite.Applications[0].ApplicationPoolName = "$siteName";
 		$webSite.ServerAutoStart = $TRUE;
 		$iis.CommitChanges();

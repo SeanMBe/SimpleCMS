@@ -31,7 +31,6 @@ namespace SimpleCMS.Helpers
 
         public static IHtmlString PostSearchResult(this HtmlHelper html, Post post, string query)
         {
-            var result = string.Empty;
             var titleMatch = post.Title.Excerpt(query, 30).Highlight(query);
             var bodyMatch = post.Body.Excerpt(query, 30).Highlight(query);
             return new HtmlString(titleMatch + bodyMatch);

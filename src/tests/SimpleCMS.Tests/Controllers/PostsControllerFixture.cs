@@ -27,7 +27,7 @@ namespace SimpleCMS.Tests.Controllers
             var allPosts = new List<Post>();
             repository.Stub(p => p.FindAll<Post>()).Return(allPosts);
 
-            var result = controller.Index();
+            var result = controller.Show();
 
             Assert.IsTrue(result.ViewData.Model.Equals(allPosts));
         }
@@ -38,7 +38,7 @@ namespace SimpleCMS.Tests.Controllers
             var allAccounts = new List<Account>();
             repository.Stub(p => p.FindAll<Account>()).Return(allAccounts);
 
-            var result = (ViewResult)controller.Create();
+            var result = (ViewResult)controller.New();
 
             Assert.IsTrue(result.ViewBag.Authors.Equals(allAccounts));
         }
@@ -54,7 +54,7 @@ namespace SimpleCMS.Tests.Controllers
             var result = controller.Create(post, authorId);
 
             Assert.IsTrue(controller.ModelState.IsValid);
-            Assert.That(result.View(), Is.EqualTo("Index"));
+            Assert.That(result.View(), Is.EqualTo("Show"));
         }
 
         [Test]
@@ -92,10 +92,10 @@ namespace SimpleCMS.Tests.Controllers
             repository.Stub(p => p.Find<Account>(x => true)).IgnoreArguments().Return(new Account());
             repository.Stub(p => p.Save(post)).Return(post);
 
-            var result = controller.Edit(post, authorId);
+            var result = controller.Update(post, authorId);
 
             Assert.IsTrue(controller.ModelState.IsValid);
-            Assert.That(result.View(), Is.EqualTo("Index"));
+            Assert.That(result.View(), Is.EqualTo("Show"));
         }
 
         [Test]
@@ -105,7 +105,7 @@ namespace SimpleCMS.Tests.Controllers
             var post = new Post();
             controller.SetupContext(post);
 
-            controller.Edit(post, authorId);
+            controller.Update(post, authorId);
 
             Assert.IsFalse(controller.ModelState.IsValid);
         }
@@ -115,9 +115,9 @@ namespace SimpleCMS.Tests.Controllers
         {
             const int postId = 1;
             repository.Stub(p => p.Delete<Post>(postId));
-            var result = controller.Delete(postId);
+            var result = controller.Destroy(postId);
 
-            Assert.That(result.View(), Is.EqualTo("Index"));
+            Assert.That(result.View(), Is.EqualTo("Show"));
         }
     }
 }

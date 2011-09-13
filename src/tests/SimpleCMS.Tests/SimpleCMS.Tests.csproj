@@ -199,8 +199,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\PostsControllerFixture.cs" />
-    <Compile Include="Controllers\HomeControllerFixture.cs" />
     <Compile Include="ControllerExtensions.cs" />
+    <Compile Include="Infrastructure\RoutesFixture.cs" />
     <Compile Include="Data\DataSessionFixture.cs" />
     <Compile Include="Data\RepositoryFixture.cs" />
     <Compile Include="ActionResultExtensions.cs" />

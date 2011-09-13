@@ -119,6 +119,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\lib\NHibernate.3.0.0.4000\lib\NHibernate.ByteCode.Castle.dll</HintPath>
     </Reference>
+    <Reference Include="RestfulRouting">
+      <HintPath>..\..\..\lib\restful-routing\RestfulRouting.dll</HintPath>
+    </Reference>
+    <Reference Include="SquishIt.Framework">
+      <HintPath>..\..\..\lib\SquishIt.0.7.1\lib\SquishIt.Framework.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.SQLite, Version=1.0.60.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
@@ -153,7 +159,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Global.asax.cs">
@@ -162,6 +167,7 @@
     <Compile Include="Helpers\HtmlHelpers.cs" />
     <Compile Include="Infrastructure\BootStrap.cs" />
     <Compile Include="Infrastructure\ComponentsInstaller.cs" />
+    <Compile Include="Infrastructure\Routes.cs" />
     <Compile Include="Infrastructure\WindsorControllerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -171,6 +177,7 @@
     <Content Include="Content\DataAnnotations.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\helpers.js" />
     <Content Include="Todo.txt" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -190,16 +197,13 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Home\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Posts\Create.cshtml" />
+    <Content Include="Views\Posts\New.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Posts\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Posts\Index.cshtml" />
+    <Content Include="Views\Posts\Show.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Posts\_CreateOrEdit.cshtml" />

@@ -37,9 +37,9 @@ task :db => [:build_console] do
 end
 
 task :install do
-	sh "powershell ./deploy.ps1 -siteName simplecms -hostName localhost"
+	sh "powershell ./deploy.ps1 -siteName simplecms"
 end
 
 task :uninstall do
-	sh "powershell ./deploy.ps1 -siteName simplecms -hostName localhost -clean true"
+	sh "powershell ./deploy.ps1 -siteName simplecms -clean true"
 end

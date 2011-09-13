@@ -2,6 +2,7 @@
 using System.Web.Routing;
 using Castle.Windsor;
 using Castle.Windsor.Installer;
+using RestfulRouting;
 
 namespace SimpleCMS.Infrastructure
 {
@@ -20,30 +21,26 @@ namespace SimpleCMS.Infrastructure
         {
             AreaRegistration.RegisterAllAreas();
             RegisterGlobalFilters(GlobalFilters.Filters);
-            RegisterRoutes(RouteTable.Routes);
+            RegisterRoutes();
             EnablingUnobtrusiveAjax();
         }
 
-        static void EnablingUnobtrusiveAjax()
+        public static void EnablingUnobtrusiveAjax()
         {
             HtmlHelper.ClientValidationEnabled = true;
             HtmlHelper.UnobtrusiveJavaScriptEnabled = true;
         }
 
-        static void RegisterGlobalFilters(GlobalFilterCollection filters)
+        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
         }
 
-        static void RegisterRoutes(RouteCollection routes)
+        public static void RegisterRoutes()
         {
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-            routes.IgnoreRoute("{*favicon}", new { favicon = @"(.*/)?favicon.ico(/.*)?" });
-            routes.MapRoute(
-                "Default",
-                "{controller}/{action}/{id}",
-                new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+            ViewEngines.Engines.Clear();
+            ViewEngines.Engines.Add(new RestfulRoutingRazorViewEngine());
+            RouteTable.Routes.MapRoutes<Routes>();
         }
 
         public static void Dispose()

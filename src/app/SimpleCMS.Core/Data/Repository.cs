@@ -64,13 +64,11 @@ namespace SimpleCMS.Core.Data
 
         public T Save<T>(T item) where T : DataModel
         {
-            using (var transaction = Session.BeginTransaction())
-            {
-                item.UpdateForSave();
-                Session.SaveOrUpdate(item);
-                transaction.Commit();
-                return item;
-            }
+            item.UpdateForSave();
+            Session.SaveOrUpdate(item);
+            Session.Flush();
+
+            return item;
         }
 
         public void Delete<T>(int id) where T : DataModel
@@ -80,11 +78,8 @@ namespace SimpleCMS.Core.Data
 
         public void Delete<T>(T entity) where T : DataModel
         {
-            using (var transaction = Session.BeginTransaction())
-            {
-                Session.Delete(entity);
-                transaction.Commit();
-            }
+            Session.Delete(entity);
+            Session.Flush();
         }
     }
 }
