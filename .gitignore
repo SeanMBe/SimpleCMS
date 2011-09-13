@@ -1,6 +1,7 @@
 # vs
 obj
 bin
+build
 *.csproj.user
 *ReSharper*
 *resharper*
