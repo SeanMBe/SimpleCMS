@@ -39,7 +39,12 @@ end
 
 desc "Setup database (create & seed)"
 task :db => [:build_console] do
-	sh "cd src\\app\\SimpleCMS.Sandbox\\bin\\#{BUILD_CONFIG} && SimpleCMS.Sandbox.exe"
+	sh "cd src\\app\\SimpleCMS.Sandbox\\bin\\#{BUILD_CONFIG} && SimpleCMS.Sandbox.exe db"
+end
+
+desc "Display routing information"
+task :routes => [:build_console] do
+	sh "cd src\\app\\SimpleCMS.Sandbox\\bin\\#{BUILD_CONFIG} && SimpleCMS.Sandbox.exe routes"
 end
 
 desc "Setup website in iis"

@@ -1,22 +1,23 @@
 ﻿using System.Web.Mvc;
+using System.Web.Routing;
 using MvcContrib.TestHelper;
 using NUnit.Framework;
 using SimpleCMS.Controllers;
+using SimpleCMS.Core.Models;
 using SimpleCMS.Infrastructure;
 
-namespace SimpleCMS.Tests.Infrastructure
-{
+namespace SimpleCMS.Tests.Infrastructure {
     [TestFixture]
     public class RoutesFixture {
-        public RoutesFixture()
-        {
+        public RoutesFixture() {
             BootStrap.RegisterRoutes();
+            RouteTable.Routes.WriteRoutesToConsole();
         }
 
         [Test]
         public void Root_ShouldReturnAllPosts() {
-            var route = "~/".WithMethod(HttpVerbs.Get);
-            route.ShouldMapTo<PostsController>(x => x.Show());
+            "~/".WithMethod(HttpVerbs.Get)
+                .ShouldMapTo<PostsController>(x => x.Show());
         }
 
         //Method    Path 	        Endpoint (controller#action)
@@ -28,46 +29,59 @@ namespace SimpleCMS.Tests.Infrastructure
         //DELETE 	session 	    sessions#destroy 
 
         [Test]
-        public void Posts_Show()
-        {
-            var route = "~/post".WithMethod(HttpVerbs.Get);
-            route.ShouldMapTo<PostsController>(x => x.Show());
+        public void GetPost_ShouldMapToShow() {
+            "~/post"
+                .WithMethod(HttpVerbs.Get)
+                .ShouldMapTo<PostsController>(x => x.Show());
         }
 
         [Test]
-        public void Posts_Create() {
-            var route = "~/post".WithMethod(HttpVerbs.Post);
-            route.Values["post"] = null;
-            route.Values["authorId"] = 0;
-            route.ShouldMapTo<PostsController>(c => c.Create(null, 0));
+        public void PostPost_ShouldMapToCreate() {
+            var post = new Post();
+            "~/post"
+                .WithMethod(HttpVerbs.Post)
+                .WithValue("post", post)
+                .WithValue("authorId", 1)
+                .ShouldMapTo<PostsController>(c => c.Create(post, 1));
         }
 
         [Test]
-        public void Posts_New() {
-            var route = "~/post/new".WithMethod(HttpVerbs.Get);
-            route.ShouldMapTo<PostsController>(x => x.New());
+        public void GetNewPost_ShouldMapToNew() {
+            "~/post/new"
+                .WithMethod(HttpVerbs.Get)
+                .ShouldMapTo<PostsController>(x => x.New());
         }
 
         [Test]
-        public void Posts_Edit() {
-            var route = "~/post/edit".WithMethod(HttpVerbs.Get);
-            route.Values["id"] = 0;
-            route.ShouldMapTo<PostsController>(x => x.Edit(0));
+        public void GetEditPost_ShouldMapToEdit() {
+            "~/post/edit"
+                .WithMethod(HttpVerbs.Get)
+                .WithValue("id", 1)
+                .ShouldMapTo<PostsController>(x => x.Edit(1));
         }
 
         [Test]
-        public void Posts_Update() {
-            var route = "~/post".WithMethod(HttpVerbs.Put);
-            route.Values["post"] = null;
-            route.Values["authorId"] = 0;
-            route.ShouldMapTo<PostsController>(x => x.Update(null, 0));
+        public void PutPost_ShouldMapToUpdate() {
+            var post = new Post();
+            "~/post"
+                .WithMethod(HttpVerbs.Put)
+                .WithValue("post", post)
+                .WithValue("authorId", 1)
+                .ShouldMapTo<PostsController>(c => c.Update(post, 1));
         }
 
         [Test]
-        public void Posts_Destroy() {
-            var route = "~/post".WithMethod(HttpVerbs.Delete);
-            route.Values["id"] = 0;
-            route.ShouldMapTo<PostsController>(x => x.Destroy(0));
+        public void DeletePost_ShouldMapToDestroy() {
+            "~/post".WithMethod(HttpVerbs.Delete)
+                .WithValue("id", 1)
+                .ShouldMapTo<PostsController>(x => x.Destroy(1));
+        }
+    }
+
+    public static class RouteDataExtension {
+        public static RouteData WithValue(this RouteData routeData, string fieldName, object value) {
+            routeData.Values[fieldName] = value;
+            return routeData;
         }
     }
 }

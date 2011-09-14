@@ -168,6 +168,7 @@
     <Compile Include="Infrastructure\BootStrap.cs" />
     <Compile Include="Infrastructure\ComponentsInstaller.cs" />
     <Compile Include="Infrastructure\Routes.cs" />
+    <Compile Include="Infrastructure\RouteTableExtension.cs" />
     <Compile Include="Infrastructure\WindsorControllerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -225,8 +226,9 @@
     <Content Include="Views\Posts\Search.cshtml" />
     <Content Include="Views\Posts\Details.cshtml" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <None Include="App_Data\database.db" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

@@ -1,14 +1,36 @@
 ﻿using System;
 using System.Configuration;
+using System.Linq;
+using System.Web.Routing;
 using NHibernate;
 using SimpleCMS.Core.Data;
 using SimpleCMS.Core.Models;
+using SimpleCMS.Infrastructure;
 
 namespace SimpleCMS.Sandbox
 {
     public class Program
     {
-        static void Main()
+        static void Main(string[] args)
+        {
+            if (args.ToList().Contains("db"))
+            {
+                DatabaseCreate();
+            }
+            if (args.ToList().Contains("routes"))
+            {
+                DisplayRoutes();
+            }
+        }
+
+        static void DisplayRoutes()
+        {
+            BootStrap.RegisterRoutes();
+            Console.WriteLine("\n\n");
+            RouteTable.Routes.WriteRoutesToConsole();
+        }
+
+        static void DatabaseCreate()
         {
             Console.WriteLine("Executing database generation...");
 
@@ -20,7 +42,7 @@ namespace SimpleCMS.Sandbox
             Console.WriteLine("Database generation complete");
         }
 
-        private static void SeedData(ISession session)
+        static void SeedData(ISession session)
         {
             Console.WriteLine("Seeding data...");
 
@@ -32,7 +54,7 @@ namespace SimpleCMS.Sandbox
             repository.Save(new Post { Title = "Sample Post", Body = body, Author = user });
         }
 
-        private static void GenerateSchemaSql(DataProvider dataProvider)
+        static void GenerateSchemaSql(DataProvider dataProvider)
         {
             Console.WriteLine("Generating sql...");
 
@@ -40,7 +62,7 @@ namespace SimpleCMS.Sandbox
             dataProvider.ExportSchema(exportFilePath);
         }
 
-        private static ISession GenerateSchema(DataProvider dataProvider)
+        static ISession GenerateSchema(DataProvider dataProvider)
         {
             Console.WriteLine("Generate schema...");
 
