@@ -7,7 +7,6 @@ namespace SimpleCMS.Tests
 {
     public static class ControllerExtensions
     {
-        // http://johan.driessen.se/posts/testing-dataannotation-based-validation-in-asp.net-mvc
         public static void SetupContext(this Controller controller, object entity)
         {
             var validationContext = new ValidationContext(entity, null, null);

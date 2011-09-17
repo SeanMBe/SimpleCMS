@@ -8,14 +8,26 @@ namespace SimpleCMS.Tests.Data
     [TestFixture]
     public class RepositoryFixture
     {
-        private ISession session;
         private IRepository repository;
+        private ISession session;
+        private readonly DataProvider provider;
+
+        public RepositoryFixture()
+        {
+            provider = DataProvider.InMemory();
+        }
 
         [SetUp]
-        public void Setup()
+        public void Init()
         {
-            session = DataSessionHelper.GetSession();
+            session = provider.BuildSchema();
             repository = new Repository(session);
+        }
+
+        [TearDown]
+        public void Dispose()
+        {
+            session.Close();
         }
 
         [Test]

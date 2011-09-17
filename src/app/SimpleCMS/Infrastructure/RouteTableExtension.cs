@@ -5,9 +5,9 @@ using System.Web.Routing;
 namespace SimpleCMS.Infrastructure
 {
     public static class RouteTableExtension {
-        public static void WriteRoutesToConsole(this RouteCollection routes) {
+        public static void WriteRoutes(this RouteCollection routes, Action<string> writeAction) {
             foreach (var route in RouteTable.Routes) {
-                Console.WriteLine(BuildRoute(route));
+                writeAction(BuildRoute(route));
             }
         }
 
@@ -16,7 +16,7 @@ namespace SimpleCMS.Infrastructure
             var allowedMethods = ((HttpMethodConstraint)route.Constraints["httpMethod"]).AllowedMethods;
             return string.Format("{0} {1} => {2}#{3}",
                                  allowedMethods.ElementAt(0),
-                                 route.Url,
+                                 string.IsNullOrEmpty(route.Url) ? "/" : route.Url,
                                  route.Defaults["controller"],
                                  route.Defaults["action"]);
         }

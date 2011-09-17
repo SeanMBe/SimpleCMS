@@ -2,12 +2,16 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using NHibernate.Criterion;
 using SimpleCMS.Core.Data;
+using SimpleCMS.Core.Logging;
 using SimpleCMS.Core.Models;
+using SimpleCMS.Core.Services;
 
 namespace SimpleCMS.Controllers
 {   
     public class PostsController : Controller
     {
+        private ILogger logger = LogService.GetCurrentClassLogger();
+
         readonly IRepository repository;
 
         public PostsController(IRepository repository)

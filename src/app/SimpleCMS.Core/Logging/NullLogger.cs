@@ -6,7 +6,6 @@ namespace SimpleCMS.Core.Logging
     {
         public NullLogger(Type sourceType)
         {
-            
         }
 
         public void Debug(object message)

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.Diagnostics;
 using SimpleCMS.Core.Logging;
 
@@ -18,18 +17,7 @@ namespace SimpleCMS.Core.Services
 
         private static ILogger GetLoggerForEnvironment(Type sourceType)
         {
-            var environment = ConfigurationManager.AppSettings["Environment"];
-
-            if (string.IsNullOrEmpty(environment))
-                return new NullLogger(sourceType);
-
-            switch (environment)
-            {
-                case "Release":
-                    return new NullLogger(sourceType); // real logger
-                default:
-                    return new NullLogger(sourceType);
-            }
+            return new NullLogger(sourceType);
         }
     }
 }

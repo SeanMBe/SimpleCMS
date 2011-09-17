@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using System.Web.Routing;
 using MvcContrib.TestHelper;
 using NUnit.Framework;
@@ -11,7 +12,7 @@ namespace SimpleCMS.Tests.Infrastructure {
     public class RoutesFixture {
         public RoutesFixture() {
             BootStrap.RegisterRoutes();
-            RouteTable.Routes.WriteRoutesToConsole();
+            RouteTable.Routes.WriteRoutes(Console.WriteLine);
         }
 
         [Test]
@@ -75,13 +76,6 @@ namespace SimpleCMS.Tests.Infrastructure {
             "~/post".WithMethod(HttpVerbs.Delete)
                 .WithValue("id", 1)
                 .ShouldMapTo<PostsController>(x => x.Destroy(1));
-        }
-    }
-
-    public static class RouteDataExtension {
-        public static RouteData WithValue(this RouteData routeData, string fieldName, object value) {
-            routeData.Values[fieldName] = value;
-            return routeData;
         }
     }
 }

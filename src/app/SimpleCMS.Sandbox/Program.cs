@@ -27,16 +27,18 @@ namespace SimpleCMS.Sandbox
         {
             BootStrap.RegisterRoutes();
             Console.WriteLine("\n\n");
-            RouteTable.Routes.WriteRoutesToConsole();
+            RouteTable.Routes.WriteRoutes(Console.WriteLine);
         }
 
         static void DatabaseCreate()
         {
             Console.WriteLine("Executing database generation...");
 
-            var dataSession = DataProvider.FileDataSession();
-            var session = GenerateSchema(dataSession);
-            GenerateSchemaSql(dataSession);
+            var dataProvider = DataProvider.UseFileDatabase();
+            var sessionFactory = dataProvider.BuildSessionFactory();
+            var session = sessionFactory.OpenSession();
+
+            dataProvider.BuildSchema(session);
             SeedData(session);
 
             Console.WriteLine("Database generation complete");
@@ -52,21 +54,6 @@ namespace SimpleCMS.Sandbox
             const string body =
                 @"Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
             repository.Save(new Post { Title = "Sample Post", Body = body, Author = user });
-        }
-
-        static void GenerateSchemaSql(DataProvider dataProvider)
-        {
-            Console.WriteLine("Generating sql...");
-
-            var exportFilePath = ConfigurationManager.AppSettings["sql_export"];
-            dataProvider.ExportSchema(exportFilePath);
-        }
-
-        static ISession GenerateSchema(DataProvider dataProvider)
-        {
-            Console.WriteLine("Generate schema...");
-
-            return dataProvider.BuildSchema();
         }
     }
 }
