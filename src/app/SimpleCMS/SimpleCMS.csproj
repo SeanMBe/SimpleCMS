@@ -181,6 +181,8 @@
     <Content Include="Global.asax" />
     <Content Include="Public\css\Site.css" />
     <Content Include="Public\javascript\helpers.js" />
+    <Content Include="Views\Accounts\Show.cshtml" />
+    <Content Include="Views\Accounts\New.cshtml" />
     <None Include="Views\Errors\404.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -218,7 +220,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Accounts\_CreateOrEdit.cshtml" />
-    <Content Include="Views\Accounts\Create.cshtml" />
     <Content Include="Views\Accounts\Edit.cshtml" />
     <Content Include="Views\Accounts\Index.cshtml" />
   </ItemGroup>

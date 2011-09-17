@@ -9,7 +9,6 @@ using SimpleCMS.Core;
 namespace SimpleCMS.Infrastructure {
     public class BootStrap {
         public static void RegisterRoutes() {
-            AreaRegistration.RegisterAllAreas();
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new RestfulRoutingRazorViewEngine());
             RouteTable.Routes.MapRoutes<Routes>();
@@ -17,11 +16,12 @@ namespace SimpleCMS.Infrastructure {
 
         public static void ReturnThroughErrorController(HttpServerUtility server, HttpResponse response, HttpContext context) {
             var exception = server.GetLastError();
-            server.ClearError();
-
-            response.Clear();
             response.StatusCode = GetStatusCode(exception);
 
+            if (response.StatusCode == 500) return;
+
+            server.ClearError();
+            response.Clear();
             var routeData = new RouteData();
             routeData.Values["controller"] = "Errors";
             routeData.Values["action"] = GetActionForStatusCode(response.StatusCode);

@@ -55,7 +55,7 @@ namespace SimpleCMS.Controllers
             {
                 post.Author = repository.Find<Account>(x => x.Id == authorId);
                 repository.Save(post);
-                return RedirectToAction("Show");
+                return RedirectToAction("Show", post.Id);
             }
 
             ViewBag.Authors = repository.FindAll<Account>();

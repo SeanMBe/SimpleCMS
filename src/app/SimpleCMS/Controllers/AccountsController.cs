@@ -15,8 +15,13 @@ namespace SimpleCMS.Controllers
 
         public ViewResult Index()
         {
-            var posts = repository.FindAll<Account>();
-            return View(posts);
+            var accounts = repository.FindAll<Account>();
+            return View(accounts);
+        }
+
+        public ViewResult Show(int id) {
+            var account = repository.Find<Account>(id);
+            return View(account);
         }
 
         public ActionResult Create()
@@ -25,17 +30,21 @@ namespace SimpleCMS.Controllers
         } 
 
         [HttpPost]
-        public ActionResult Create(Account user)
+        public ActionResult Create(Account account)
         {
             if (ModelState.IsValid)
             {
-                repository.Save(user);
-				return RedirectToAction("Index");  
+                repository.Save(account);
+				return RedirectToAction("Show", account.Id);  
             }
 
-            return View(user);
+            return View(account);
         }
-        
+
+        public ActionResult New() {
+            return View();
+        }
+
         public ActionResult Edit(int id)
         {
             var post = repository.Find<Account>(x => x.Id == id);
@@ -43,18 +52,17 @@ namespace SimpleCMS.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Account user)
+        public ActionResult Update(Account account)
         {
             if (ModelState.IsValid)
             {
-                repository.Save(user);
-                return RedirectToAction("Index");
+                repository.Save(account);
+                return RedirectToAction("Show", account.Id);
             }
-            return View(user);
+            return View(account);
         }
 
-        [HttpPost, ActionName("Delete")]
-        public ActionResult Delete(int id)
+        public ActionResult Destroy(int id)
         {
             repository.Delete<Account>(id);
             return RedirectToAction("Index");

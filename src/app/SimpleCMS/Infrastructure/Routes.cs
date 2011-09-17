@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Routing;
 using RestfulRouting;
@@ -9,15 +10,14 @@ namespace SimpleCMS.Infrastructure {
         public override void Map(IMapper map) {
             map.Root<HomeController>(x => x.Index());
             map.Resources<PostsController>(posts => {
-			    posts.As("posts");
-                //posts.Collection(x => {
-                //    x.Get("latest");
-                //    x.Post("someaction");
-                //});
-                //posts.Member(x => x.Put("move"));
+                posts.Collection(x => {
+                    x.Get("search");
+                    x.Post("search");
+                });
+                posts.Member(x => x.Get("search"));
 		    });
-            map.Resource<AccountsController>(accounts => {
-                accounts.As("accounts");
+            map.Resources<AccountsController>(accounts => {
+                accounts.As("users");
             });
         }
     }
@@ -33,10 +33,19 @@ namespace SimpleCMS.Infrastructure {
             var route = ((Route)routeBase);
             var allowedMethods = ((HttpMethodConstraint)route.Constraints["httpMethod"]).AllowedMethods;
             return string.Format("{0} {1} => {2}#{3}",
-                                 allowedMethods.ElementAt(0),
+                                 DisplayAllowedMethods(allowedMethods),
                                  string.IsNullOrEmpty(route.Url) ? "/" : route.Url,
                                  route.Defaults["controller"],
                                  route.Defaults["action"]);
+        }
+
+        static string DisplayAllowedMethods(IEnumerable<string> allowedMethods)
+        {
+            var strings = allowedMethods
+                .ToList()
+                .Select(p => p.ToString())
+                .ToArray();
+            return String.Join(", ", strings);
         }
     }
 }
