@@ -13,6 +13,8 @@ namespace SimpleCMS.Sandbox
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("\n\n");
+
             if (args.ToList().Contains("db"))
             {
                 DatabaseCreate();
@@ -26,7 +28,6 @@ namespace SimpleCMS.Sandbox
         static void DisplayRoutes()
         {
             BootStrap.RegisterRoutes();
-            Console.WriteLine("\n\n");
             RouteTable.Routes.WriteRoutes(Console.WriteLine);
         }
 
@@ -34,11 +35,8 @@ namespace SimpleCMS.Sandbox
         {
             Console.WriteLine("Executing database generation...");
 
-            var dataProvider = DataProvider.UseFileDatabase();
-            var sessionFactory = dataProvider.BuildSessionFactory();
-            var session = sessionFactory.OpenSession();
-
-            dataProvider.BuildSchema(session);
+            var dataProvider = DataProvider.File();
+            var session = dataProvider.BuildSchema();
             SeedData(session);
 
             Console.WriteLine("Database generation complete");

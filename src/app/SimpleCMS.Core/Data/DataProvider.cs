@@ -43,7 +43,7 @@ namespace SimpleCMS.Core.Data
             var session = SessionFactory.OpenSession();
             new SchemaExport(Configuration)
                 .Execute(
-                    script: true,
+                    script: false,
                     export: true,
                     justDrop: false,
                     connection: session.Connection,
