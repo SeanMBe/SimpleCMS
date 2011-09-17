@@ -1,6 +1,6 @@
-﻿using NUnit.Framework;
+﻿using System;
+using NUnit.Framework;
 using SimpleCMS.Controllers;
-using SimpleCMS.Core.Logging;
 using SimpleCMS.Infrastructure;
 using StructureMap;
 
@@ -9,7 +9,8 @@ namespace SimpleCMS.Tests.Infrastructure
     [TestFixture]
     public class ContainerBuilderFixture {
         public ContainerBuilderFixture() {
-            ContainerBuilder.Build();
+            Ioc.BuildContainer();
+            Console.WriteLine(ObjectFactory.WhatDoIHave());
         }
 
         [Test]

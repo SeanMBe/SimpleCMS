@@ -73,7 +73,7 @@
     <Compile Include="Data\UnitOfWork.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Services\LogService.cs" />
-    <Compile Include="Logging\NullLogger.cs" />
+    <Compile Include="Logging\ConsoleLogger.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\DataModel.cs" />
     <Compile Include="Models\Mapping\AccountMapping.cs" />

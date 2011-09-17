@@ -17,7 +17,7 @@ namespace SimpleCMS.Core.Services
 
         private static ILogger GetLoggerForEnvironment(Type sourceType)
         {
-            return new NullLogger(sourceType);
+            return new ConsoleLogger(sourceType);
         }
     }
 }

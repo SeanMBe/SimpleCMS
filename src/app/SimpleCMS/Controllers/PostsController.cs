@@ -2,16 +2,12 @@ using System.Collections.Generic;
 using System.Web.Mvc;
 using NHibernate.Criterion;
 using SimpleCMS.Core.Data;
-using SimpleCMS.Core.Logging;
 using SimpleCMS.Core.Models;
-using SimpleCMS.Core.Services;
 
 namespace SimpleCMS.Controllers
-{   
+{
     public class PostsController : Controller
     {
-        private ILogger logger = LogService.GetCurrentClassLogger();
-
         readonly IRepository repository;
 
         public PostsController(IRepository repository)
@@ -19,9 +15,14 @@ namespace SimpleCMS.Controllers
             this.repository = repository;
         }
 
-        public ViewResult Show()
-        {
+        public ViewResult Index() {
             var posts = repository.FindAll<Post>();
+            return View(posts);
+        }
+
+        public ViewResult Show(int id)
+        {
+            var posts = repository.Find<Post>(id);
             return View(posts);
         }
 
@@ -29,7 +30,7 @@ namespace SimpleCMS.Controllers
             if (ModelState.IsValid) {
                 post.Author = repository.Find<Account>(x => x.Id == authorId);
                 repository.Save(post);
-                return RedirectToAction("Show");
+                return RedirectToAction("Show", post.Id);
             }
 
             return RedirectToAction("New");
@@ -67,11 +68,6 @@ namespace SimpleCMS.Controllers
         {
             repository.Delete<Post>(id);
             return RedirectToAction("Show");
-        }
-
-        public ViewResult Details(int id) {
-            var post = repository.Find<Post>(id);
-            return View(post);
         }
 
         public ViewResult Search(string query) {

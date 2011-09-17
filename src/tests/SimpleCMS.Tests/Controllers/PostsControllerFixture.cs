@@ -27,7 +27,7 @@ namespace SimpleCMS.Tests.Controllers
             var allPosts = new List<Post>();
             repository.Stub(p => p.FindAll<Post>()).Return(allPosts);
 
-            var result = controller.Show();
+            var result = controller.Index();
 
             Assert.IsTrue(result.ViewData.Model.Equals(allPosts));
         }

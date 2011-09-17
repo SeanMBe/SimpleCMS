@@ -5,15 +5,15 @@
 
     @MvcHtmlString.Create(
       SquishIt.Framework.Bundle.Css()
-        .Add("~/Content/Site.css")
-        .Add("~/Content/DataAnnotations.css")
-        .Render("~/Content/combined_#.css"))
+        .Add("~/Public/css/Site.css")
+        .Add("~/Public/css/DataAnnotations.css")
+        .Render("~/Public/css/combined_#.css"))
 
     @MvcHtmlString.Create(
       SquishIt.Framework.Bundle.JavaScript()
-        .Add("~/Scripts/jquery-1.4.4.min.js")
-        .Add("~/Scripts/helpers.js")
-        .Render("~/Scripts/combined_#.js"))
+        .Add("~/Public/javascript/jquery-1.4.4.min.js")
+        .Add("~/Public/javascript/helpers.js")
+        .Render("~/Public/javascript/combined_#.js"))
 </head>
 <body>
     <div class="top">

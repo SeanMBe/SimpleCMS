@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Web.Mvc;
-using StructureMap;
+using System.Web.Routing;
 
 namespace SimpleCMS.Infrastructure
 {
     public class CustomControllerFactory : DefaultControllerFactory {
-        protected IController GetControllerInstance(Type controllerType) {
-            if (controllerType == null)
-                throw new ArgumentNullException("controllerType");
-
-            return ObjectFactory.GetInstance(controllerType) as Controller;
+        protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType)
+        {
+            return (IController) Ioc.Resolve(controllerType);
         }
     }
 }

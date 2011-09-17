@@ -4,16 +4,13 @@ namespace SimpleCMS.Core.Data
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly ISessionFactory sessionFactory;
+        public ISession CurrentSession { get; private set; }
         private readonly ITransaction transaction;
 
-        public UnitOfWork(ISessionFactory sessionFactory) {
-            this.sessionFactory = sessionFactory;
-            CurrentSession = this.sessionFactory.OpenSession();
+        public UnitOfWork(ISession session) {
+            CurrentSession = session;
             transaction = CurrentSession.BeginTransaction();
         }
-
-        public ISession CurrentSession { get; private set; }
 
         public void Dispose() {
             CurrentSession.Close();

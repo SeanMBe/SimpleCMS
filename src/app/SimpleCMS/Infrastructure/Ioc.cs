@@ -1,11 +1,17 @@
-﻿using NHibernate;
+﻿using System;
+using NHibernate;
 using SimpleCMS.Core;
 using SimpleCMS.Core.Data;
 using StructureMap;
 
-namespace SimpleCMS.Infrastructure {
-    public static class ContainerBuilder {
-        public static void Build() {
+namespace SimpleCMS.Infrastructure
+{
+    public class Ioc
+    {
+        private static IContainer container;
+
+        public static void BuildContainer()
+        {
             ObjectFactory.Initialize(x => {
                 x.Scan(scanner => {
                     scanner.TheCallingAssembly();
@@ -22,6 +28,29 @@ namespace SimpleCMS.Infrastructure {
                     .HybridHttpOrThreadLocalScoped()
                     .Use(y => y.GetInstance<ISessionFactory>().OpenSession());
             });
+
+            container = ObjectFactory.Container;
+        }
+
+        public static void RegisterType<T1, T2>() {
+            container.Configure(x => x.For(typeof(T1)).Use(typeof(T2)));
+        }
+
+        public static T Resolve<T>() {
+            return container.GetInstance<T>();
+        }
+
+        public static object Resolve(Type T) {
+            return container.GetInstance(T);
+        }
+
+        public static void EndRequest()
+        {
+            ObjectFactory.ReleaseAndDisposeAllHttpScopedObjects();
+        }
+
+        public static void Dispose() {
+            container.Dispose();
         }
 
         private static ISessionFactory GetSessionFactory() {

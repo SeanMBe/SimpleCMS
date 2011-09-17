@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.Linq;
 using System.Web.Routing;
 using NHibernate;
@@ -33,19 +32,18 @@ namespace SimpleCMS.Sandbox
 
         static void DatabaseCreate()
         {
-            Console.WriteLine("Executing database generation...");
-
+            Console.Write("Building schema...");
             var dataProvider = DataProvider.File();
             var session = dataProvider.BuildSchema();
-            SeedData(session);
+            Console.WriteLine("complete");
 
-            Console.WriteLine("Database generation complete");
+            Console.Write("Seeding data...");
+            SeedData(session);
+            Console.WriteLine("complete");
         }
 
         static void SeedData(ISession session)
         {
-            Console.WriteLine("Seeding data...");
-
             var repository = new Repository(session);
             var user = repository.Save(new Account { Email = "Tom Bombadil" });
             repository.Save(new Account { Email = "Bilbo Bagins" });

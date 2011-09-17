@@ -1,45 +1,16 @@
-@model IEnumerable<Post>
+﻿@model Post
 
 @{
-    ViewBag.Title = "Posts";
+    ViewBag.Title = "Details";
 }
 
-<h2>Index</h2>
-
-<table>
-    <tr>
-        <th>
-            Title
-        </th>
-        <th>
-            Body
-        </th>
-        <th>
-            Author
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-			@item.Title
-        </td>
-        <td>
-			@item.Body.Truncate(50)
-        </td>
-        <td>
-			@(item.Author == null ? "None" : item.Author.Email)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id })
-            &nbsp;|&nbsp;
-            @Html.DeleteLink("Delete", @item.Id, @item.Title)
-        </td>
-    </tr>
-}
-</table>
-
-<div class="actions">
-    @Html.ActionLink("New Record", "Create")
-</div>
+<h2>Details</h2>
+<fieldset>
+    <legend>Post</legend>
+    @Model.Title<br />
+    @Model.Body
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,26 +1,23 @@
 ﻿using System;
-using SimpleCMS.Core.Logging;
-using SimpleCMS.Core.Services;
+using System.Web;
+using System.Web.Mvc;
 using SimpleCMS.Infrastructure;
 
 namespace SimpleCMS {
-    public class MvcApplication : System.Web.HttpApplication {
-        static readonly ILogger logger = LogService.GetCurrentClassLogger();
-
+    public class MvcApplication : HttpApplication {
         protected void Application_Start() {
-            BootStrap.ApplicationStart();
-        }
-
-        protected void Application_End() {
-            BootStrap.ApplicationEnd();
+            BootStrap.RegisterRoutes();
+            Ioc.BuildContainer();
+            ControllerBuilder.Current.SetControllerFactory(new CustomControllerFactory());
         }
 
         protected void Application_EndRequest(object sender, EventArgs e) {
-            BootStrap.EndRequest();
+            Ioc.EndRequest();
         }
 
-        protected void Application_Error(object sender, EventArgs e) {
-            logger.Error("Application error", Server.GetLastError());
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            BootStrap.ReturnThroughErrorController(Server, Response, Context);
         }
     }
 }

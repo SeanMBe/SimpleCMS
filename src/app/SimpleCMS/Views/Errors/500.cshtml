@@ -1,0 +1,13 @@
+@model SimpleCMS.Controllers.ExceptionDetails
+@{
+    ViewBag.Title = "500 - Server Error";
+}
+<article>
+    <h1>@ViewBag.Message</h1>
+    <div>
+        <p><strong>Description:</strong> @Model.Description</p>
+        <p><strong>Exception Details:</strong> @Model.Details</p>
+        <p>@Model.InnerStackTrace</p>
+        <p>@Model.StackTrace</p>
+    </div>
+</article>

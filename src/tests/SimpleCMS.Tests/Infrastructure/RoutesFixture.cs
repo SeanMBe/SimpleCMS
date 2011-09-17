@@ -16,30 +16,22 @@ namespace SimpleCMS.Tests.Infrastructure {
         }
 
         [Test]
-        public void Root_ShouldReturnAllPosts() {
+        public void Root_ShouldReturnHomeIndex() {
             "~/".WithMethod(HttpVerbs.Get)
-                .ShouldMapTo<PostsController>(x => x.Show());
+                .ShouldMapTo<HomeController>(x => x.Index());
         }
 
-        //Method    Path 	        Endpoint (controller#action)
-        //GET       session 	    sessions#show
-        //POST 	    session 	    sessions#create
-        //GET 	    session/new 	sessions#new
-        //GET 	    session/edit 	sessions#edit
-        //PUT 	    session 	    sessions#update
-        //DELETE 	session 	    sessions#destroy 
-
         [Test]
-        public void GetPost_ShouldMapToShow() {
-            "~/post"
+        public void GetPosts_ShouldMapToIndex() {
+            "~/posts"
                 .WithMethod(HttpVerbs.Get)
-                .ShouldMapTo<PostsController>(x => x.Show());
+                .ShouldMapTo<PostsController>(x => x.Index());
         }
 
         [Test]
-        public void PostPost_ShouldMapToCreate() {
+        public void PostPosts_ShouldMapToCreate() {
             var post = new Post();
-            "~/post"
+            "~/posts"
                 .WithMethod(HttpVerbs.Post)
                 .WithValue("post", post)
                 .WithValue("authorId", 1)
@@ -47,24 +39,32 @@ namespace SimpleCMS.Tests.Infrastructure {
         }
 
         [Test]
-        public void GetNewPost_ShouldMapToNew() {
-            "~/post/new"
+        public void GetPostsNew_ShouldMapToNew() {
+            "~/posts/new"
                 .WithMethod(HttpVerbs.Get)
                 .ShouldMapTo<PostsController>(x => x.New());
         }
 
         [Test]
         public void GetEditPost_ShouldMapToEdit() {
-            "~/post/edit"
+            "~/posts/{id}/edit"
                 .WithMethod(HttpVerbs.Get)
                 .WithValue("id", 1)
                 .ShouldMapTo<PostsController>(x => x.Edit(1));
         }
 
         [Test]
+        public void GetPost_ShouldMapToShow() {
+            "~/posts/{id}"
+                .WithMethod(HttpVerbs.Get)
+                .WithValue("id", 1)
+                .ShouldMapTo<PostsController>(x => x.Show(1));
+        }
+
+        [Test]
         public void PutPost_ShouldMapToUpdate() {
             var post = new Post();
-            "~/post"
+            "~/posts/{id}"
                 .WithMethod(HttpVerbs.Put)
                 .WithValue("post", post)
                 .WithValue("authorId", 1)
@@ -73,7 +73,8 @@ namespace SimpleCMS.Tests.Infrastructure {
 
         [Test]
         public void DeletePost_ShouldMapToDestroy() {
-            "~/post".WithMethod(HttpVerbs.Delete)
+            "~/posts/{id}"
+                .WithMethod(HttpVerbs.Delete)
                 .WithValue("id", 1)
                 .ShouldMapTo<PostsController>(x => x.Destroy(1));
         }
