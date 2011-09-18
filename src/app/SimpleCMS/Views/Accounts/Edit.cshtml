@@ -6,7 +6,8 @@
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm("Update", "Accounts", new { @id = Model.Id })) {
+    <input type="hidden" name="_method" value="put" />
     @Html.ValidationSummary(true)
     @Html.HiddenFor(model => model.Id)
 	@Html.Partial("_CreateOrEdit", Model)

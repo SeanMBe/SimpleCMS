@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using NUnit.Framework;
 using Rhino.Mocks;
-using SimpleCMS.Controllers;
+using SimpleCMS.Core.Controllers;
 using SimpleCMS.Core.Data;
 using SimpleCMS.Core.Models;
 

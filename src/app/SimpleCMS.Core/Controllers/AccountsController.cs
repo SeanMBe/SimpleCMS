@@ -2,7 +2,7 @@
 using SimpleCMS.Core.Data;
 using SimpleCMS.Core.Models;
 
-namespace SimpleCMS.Controllers
+namespace SimpleCMS.Core.Controllers
 {
     public class AccountsController : Controller
     {
@@ -24,21 +24,15 @@ namespace SimpleCMS.Controllers
             return View(account);
         }
 
-        public ActionResult Create()
-        {
-            return View();
-        } 
-
-        [HttpPost]
         public ActionResult Create(Account account)
         {
             if (ModelState.IsValid)
             {
                 repository.Save(account);
-				return RedirectToAction("Show", account.Id);  
+                return RedirectToAction("Index");  
             }
 
-            return View(account);
+            return RedirectToAction("New");
         }
 
         public ActionResult New() {
@@ -51,7 +45,6 @@ namespace SimpleCMS.Controllers
 			return View(post);
         }
 
-        [HttpPost]
         public ActionResult Update(Account account)
         {
             if (ModelState.IsValid)
@@ -59,7 +52,7 @@ namespace SimpleCMS.Controllers
                 repository.Save(account);
                 return RedirectToAction("Show", account.Id);
             }
-            return View(account);
+            return View("Edit", account);
         }
 
         public ActionResult Destroy(int id)

@@ -3,7 +3,7 @@ using System.Web.Mvc;
 using SimpleCMS.Core.Logging;
 using SimpleCMS.Core.Services;
 
-namespace SimpleCMS.Controllers
+namespace SimpleCMS.Core.Controllers
 {
     public class ErrorsController : Controller {
         static readonly ILogger logger = LogService.GetCurrentClassLogger();

@@ -1,10 +1,9 @@
 ﻿using System;
 using NHibernate;
-using SimpleCMS.Core;
 using SimpleCMS.Core.Data;
 using StructureMap;
 
-namespace SimpleCMS.Infrastructure
+namespace SimpleCMS.Core.Infrastructure
 {
     public class Ioc
     {

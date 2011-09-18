@@ -1,7 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
-using SimpleCMS.Controllers;
-using SimpleCMS.Infrastructure;
+using SimpleCMS.Core.Controllers;
+using SimpleCMS.Core.Infrastructure;
 using StructureMap;
 
 namespace SimpleCMS.Tests.Infrastructure

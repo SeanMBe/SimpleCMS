@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace SimpleCMS.Infrastructure
+namespace SimpleCMS.Core.Infrastructure
 {
     public class CustomControllerFactory : DefaultControllerFactory {
         protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType)

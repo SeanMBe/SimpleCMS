@@ -3,9 +3,9 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using MvcContrib.TestHelper;
 using NUnit.Framework;
-using SimpleCMS.Controllers;
+using SimpleCMS.Core.Controllers;
+using SimpleCMS.Core.Infrastructure;
 using SimpleCMS.Core.Models;
-using SimpleCMS.Infrastructure;
 
 namespace SimpleCMS.Tests.Infrastructure {
     [TestFixture]

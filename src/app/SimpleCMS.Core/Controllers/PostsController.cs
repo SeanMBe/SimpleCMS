@@ -4,7 +4,7 @@ using NHibernate.Criterion;
 using SimpleCMS.Core.Data;
 using SimpleCMS.Core.Models;
 
-namespace SimpleCMS.Controllers
+namespace SimpleCMS.Core.Controllers
 {
     public class PostsController : Controller
     {

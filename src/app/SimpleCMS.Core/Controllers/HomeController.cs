@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace SimpleCMS.Controllers
+namespace SimpleCMS.Core.Controllers
 {
     public class HomeController: Controller
     {

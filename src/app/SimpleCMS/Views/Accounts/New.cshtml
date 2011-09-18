@@ -6,11 +6,11 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) {
+<form action="@Url.Action("Create", "Accounts")" method="post" >
     @Html.ValidationSummary(true)
 	@Html.Partial("_CreateOrEdit", Model)
     @Html.Submit("Create")
-}
+</form>
 
 <div class="actions">
     @Html.ActionLink("Back to List", "Index")
