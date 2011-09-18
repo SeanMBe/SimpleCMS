@@ -6,13 +6,13 @@
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm("Update", "Accounts", new { @id = Model.Id })) {
+<form action="@Url.Action("Update", "Accounts", new { @id = Model.Id })" method="post" >
     <input type="hidden" name="_method" value="put" />
     @Html.ValidationSummary(true)
     @Html.HiddenFor(model => model.Id)
 	@Html.Partial("_CreateOrEdit", Model)
     @Html.Submit("Save")
-}
+</form>
 
 <div class="actions">
     @Html.ActionLink("Back to List", "Index")

@@ -34,12 +34,15 @@
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id })
             &nbsp;|&nbsp;
-            @Html.DeleteLink("Delete", @item.Id, @item.Title)
+            <form action="@Url.Action("Destroy", "Posts", new { @id = @item.Id })" method="post" > 
+                <input type="hidden" name="_method" value="delete" />
+                <a onclick="parentNode.submit();">Delete</a>
+            </form>
         </td>
     </tr>
 }
 </table>
 
 <div class="actions">
-    @Html.ActionLink("New Record", "Create")
+    @Html.ActionLink("New Record", "New")
 </div>

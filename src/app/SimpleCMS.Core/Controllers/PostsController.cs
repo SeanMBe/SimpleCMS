@@ -30,7 +30,7 @@ namespace SimpleCMS.Core.Controllers
             if (ModelState.IsValid) {
                 post.Author = repository.Find<Account>(x => x.Id == authorId);
                 repository.Save(post);
-                return RedirectToAction("Show", post.Id);
+                return RedirectToAction("Index");
             }
 
             return RedirectToAction("New");
@@ -67,7 +67,7 @@ namespace SimpleCMS.Core.Controllers
         public ActionResult Destroy(int id)
         {
             repository.Delete<Post>(id);
-            return RedirectToAction("Show");
+            return RedirectToAction("Index");
         }
 
         public ViewResult Search(string query) {
