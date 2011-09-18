@@ -2,10 +2,10 @@
 <html>
 <head>
     <title>@ViewBag.Title</title>
-
     @MvcHtmlString.Create(
       SquishIt.Framework.Bundle.Css()
         .Add("~/Public/css/Site.css")
+        .Add("~/Public/css/Buttons.css")
         .Add("~/Public/css/DataAnnotations.css")
         .Render("~/Public/css/combined_#.css"))
 
