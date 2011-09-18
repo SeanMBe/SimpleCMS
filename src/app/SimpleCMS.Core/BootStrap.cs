@@ -4,8 +4,9 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using RestfulRouting;
 using SimpleCMS.Core.Controllers;
+using SimpleCMS.Core.Web;
 
-namespace SimpleCMS.Core.Infrastructure {
+namespace SimpleCMS.Core {
     public class BootStrap {
         public static void RegisterRoutes() {
             ViewEngines.Engines.Clear();

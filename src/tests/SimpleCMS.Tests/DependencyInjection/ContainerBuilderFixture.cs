@@ -1,9 +1,9 @@
 ﻿using NUnit.Framework;
+using SimpleCMS.Core;
 using SimpleCMS.Core.Controllers;
-using SimpleCMS.Core.Infrastructure;
 using StructureMap;
 
-namespace SimpleCMS.Tests.Infrastructure
+namespace SimpleCMS.Tests.DependencyInjection
 {
     [TestFixture]
     public class ContainerBuilderFixture {

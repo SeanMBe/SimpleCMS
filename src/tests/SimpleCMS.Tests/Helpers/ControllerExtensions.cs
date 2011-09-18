@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web.Mvc;
 
-namespace SimpleCMS.Tests
+namespace SimpleCMS.Tests.Helpers
 {
     public static class ControllerExtensions
     {

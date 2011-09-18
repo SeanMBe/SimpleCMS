@@ -5,7 +5,7 @@ using System.Web.Routing;
 using RestfulRouting;
 using SimpleCMS.Core.Controllers;
 
-namespace SimpleCMS.Core.Infrastructure {
+namespace SimpleCMS.Core.Web {
     public class Routes : RouteSet {
         public override void Map(IMapper map) {
             // ReSharper disable ConvertToLambdaExpression

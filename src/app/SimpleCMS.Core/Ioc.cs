@@ -3,7 +3,7 @@ using NHibernate;
 using SimpleCMS.Core.Data;
 using StructureMap;
 
-namespace SimpleCMS.Core.Infrastructure
+namespace SimpleCMS.Core
 {
     public class Ioc
     {
@@ -16,10 +16,6 @@ namespace SimpleCMS.Core.Infrastructure
                     scanner.TheCallingAssembly();
                     scanner.WithDefaultConventions();
                 });
-                x.Scan(scanner => {
-                    scanner.AssemblyContainingType<Repository>();
-                    scanner.WithDefaultConventions();
-                });
                 x.For<ISessionFactory>()
                     .Singleton()
                     .Use(GetSessionFactory());
@@ -27,7 +23,6 @@ namespace SimpleCMS.Core.Infrastructure
                     .HybridHttpOrThreadLocalScoped()
                     .Use(y => y.GetInstance<ISessionFactory>().OpenSession());
             });
-
             container = ObjectFactory.Container;
         }
 

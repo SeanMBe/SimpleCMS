@@ -5,6 +5,7 @@ using Rhino.Mocks;
 using SimpleCMS.Core.Controllers;
 using SimpleCMS.Core.Data;
 using SimpleCMS.Core.Models;
+using SimpleCMS.Tests.Helpers;
 
 namespace SimpleCMS.Tests.Controllers
 {

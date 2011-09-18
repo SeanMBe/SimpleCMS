@@ -1,11 +1,12 @@
 ﻿using System.Web.Mvc;
 using MvcContrib.TestHelper;
 using NUnit.Framework;
+using SimpleCMS.Core;
 using SimpleCMS.Core.Controllers;
-using SimpleCMS.Core.Infrastructure;
 using SimpleCMS.Core.Models;
+using SimpleCMS.Tests.Helpers;
 
-namespace SimpleCMS.Tests.Infrastructure {
+namespace SimpleCMS.Tests.Web {
     [TestFixture]
     public class RoutesFixture {
         public RoutesFixture() {

@@ -2,7 +2,7 @@
 using System.Web;
 using SimpleCMS.Core.Data;
 
-namespace SimpleCMS.Core.Infrastructure
+namespace SimpleCMS.Core.Web
 {
     public class UnitOfWorkModule : IHttpModule {
         private IUnitOfWork unitOfWork;

@@ -2,9 +2,10 @@
 using System.Linq;
 using System.Web.Routing;
 using NHibernate;
+using SimpleCMS.Core;
 using SimpleCMS.Core.Data;
-using SimpleCMS.Core.Infrastructure;
 using SimpleCMS.Core.Models;
+using SimpleCMS.Core.Web;
 
 namespace SimpleCMS.Sandbox
 {

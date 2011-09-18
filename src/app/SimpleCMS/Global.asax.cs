@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Web;
 using System.Web.Mvc;
-using SimpleCMS.Core.Infrastructure;
+using SimpleCMS.Core;
+using SimpleCMS.Core.Controllers;
 
 namespace SimpleCMS {
     public class MvcApplication : HttpApplication {

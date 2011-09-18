@@ -203,12 +203,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\PostsControllerFixture.cs" />
-    <Compile Include="ControllerExtensions.cs" />
-    <Compile Include="Infrastructure\ContainerBuilderFixture.cs" />
-    <Compile Include="Infrastructure\RouteDataExtension.cs" />
-    <Compile Include="Infrastructure\RoutesFixture.cs" />
+    <Compile Include="Helpers\ControllerExtensions.cs" />
+    <Compile Include="DependencyInjection\ContainerBuilderFixture.cs" />
+    <Compile Include="Helpers\RouteDataExtension.cs" />
+    <Compile Include="Web\RoutesFixture.cs" />
     <Compile Include="Data\RepositoryFixture.cs" />
-    <Compile Include="ActionResultExtensions.cs" />
+    <Compile Include="Helpers\ActionResultExtensions.cs" />
     <Compile Include="Services\AccountServiceFixture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
