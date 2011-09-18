@@ -54,7 +54,7 @@ namespace SimpleCMS.Tests.Controllers
             var result = controller.Create(post, authorId);
 
             Assert.IsTrue(controller.ModelState.IsValid);
-            Assert.That(result.View(), Is.EqualTo("Show"));
+            Assert.That(result.View(), Is.EqualTo("Index"));
         }
 
         [Test]
@@ -117,7 +117,7 @@ namespace SimpleCMS.Tests.Controllers
             repository.Stub(p => p.Delete<Post>(postId));
             var result = controller.Destroy(postId);
 
-            Assert.That(result.View(), Is.EqualTo("Show"));
+            Assert.That(result.View(), Is.EqualTo("Index"));
         }
     }
 }

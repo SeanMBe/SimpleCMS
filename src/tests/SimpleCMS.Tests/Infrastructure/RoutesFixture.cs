@@ -1,6 +1,4 @@
-﻿using System;
-using System.Web.Mvc;
-using System.Web.Routing;
+﻿using System.Web.Mvc;
 using MvcContrib.TestHelper;
 using NUnit.Framework;
 using SimpleCMS.Core.Controllers;
@@ -12,7 +10,6 @@ namespace SimpleCMS.Tests.Infrastructure {
     public class RoutesFixture {
         public RoutesFixture() {
             BootStrap.RegisterRoutes();
-            RouteTable.Routes.WriteRoutes(Console.WriteLine);
         }
 
         [Test]

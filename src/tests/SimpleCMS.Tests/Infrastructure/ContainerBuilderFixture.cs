@@ -10,7 +10,6 @@ namespace SimpleCMS.Tests.Infrastructure
     public class ContainerBuilderFixture {
         public ContainerBuilderFixture() {
             Ioc.BuildContainer();
-            Console.WriteLine(ObjectFactory.WhatDoIHave());
         }
 
         [Test]

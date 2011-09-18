@@ -134,6 +134,7 @@
   <ItemGroup>
     <Content Include="Public\css\background.svg" />
     <Content Include="Public\css\Background.css" />
+    <Content Include="Public\css\Buttons.css" />
     <Content Include="Public\css\DataAnnotations.css" />
     <Content Include="Global.asax" />
     <Content Include="Public\css\Site.css" />
