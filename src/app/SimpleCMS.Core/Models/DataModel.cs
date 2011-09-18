@@ -12,26 +12,12 @@ namespace SimpleCMS.Core.Models
         [HiddenInput(DisplayValue = false)]
         public virtual DateTime ModifiedDate { get; set; }
 
-        public virtual void UpdateForCreate()
+        public virtual void UpdateForSave(DateTime time)
         {
-            CreatedDate = DateTime.Now;
-            ModifiedDate = DateTime.Now;
-        }
-
-        public virtual void UpdateForEdit()
-        {
-            ModifiedDate = DateTime.Now;
-        }
-
-        public virtual void UpdateForSave()
-        {
+            ModifiedDate = time;
             if (Id == 0)
             {
-                UpdateForCreate();
-            }
-            else
-            {
-                UpdateForEdit();
+                CreatedDate = time;
             }
         }
 

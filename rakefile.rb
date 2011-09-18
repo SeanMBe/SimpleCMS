@@ -16,7 +16,7 @@ def build target_name, target, build_config
 end
 
 def test test_project_name
-	nunit_path = "lib/NUnit.2.5.9.10348/tools/nunit-console.exe"
+	nunit_path = "lib/NUnit.2.5.9.10348/tools/nunit-console-x86.exe"
 	config = "src/tests/#{test_project_name}/bin/#{BUILD_CONFIG}/#{test_project_name}.dll /xml=build/#{test_project_name}.xml /nologo"
 	run_command "#{nunit_path} #{config}"
 end

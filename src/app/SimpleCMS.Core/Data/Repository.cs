@@ -64,7 +64,7 @@ namespace SimpleCMS.Core.Data
 
         public T Save<T>(T item) where T : DataModel
         {
-            item.UpdateForSave();
+            item.UpdateForSave(DateTime.Now);
             Session.SaveOrUpdate(item);
             Session.Flush();
 
