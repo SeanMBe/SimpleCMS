@@ -1,5 +1,4 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using SimpleCMS.Core.Controllers;
 using SimpleCMS.Core.Infrastructure;
 using StructureMap;

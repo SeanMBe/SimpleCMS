@@ -1,16 +1,24 @@
 PROJECT_NAME = "SimpleCMS"
 BUILD_CONFIG = "Debug"
 
+def run_command command
+	begin
+	  sh command
+	rescue => e
+	  puts "#{e}"
+	end
+end
+
 def build target_name, target, build_config
 	msbuild_path = "C:/Windows/Microsoft.NET/Framework/v4.0.30319/msbuild.exe"
 	config = "#{target_name} /p:Configuration=#{build_config} /t:#{target} /nologo /verbosity:minimal"
-	sh "#{msbuild_path} #{config}"
+	run_command "#{msbuild_path} #{config}"
 end
 
 def test test_project_name
 	nunit_path = "lib/NUnit.2.5.9.10348/tools/nunit-console.exe"
 	config = "src/tests/#{test_project_name}/bin/#{BUILD_CONFIG}/#{test_project_name}.dll /xml=build/#{test_project_name}.xml /nologo"
-	sh "#{nunit_path} #{config}"
+	run_command "#{nunit_path} #{config}"
 end
 
 #rake -T "shows tasks"
@@ -39,12 +47,12 @@ end
 
 desc "Setup database (create & seed)"
 task :db => [:build_console] do
-	sh "cd src\\app\\SimpleCMS.Sandbox\\bin\\#{BUILD_CONFIG} && SimpleCMS.Sandbox.exe db"
+	run_command "cd src\\app\\SimpleCMS.Sandbox\\bin\\#{BUILD_CONFIG} && SimpleCMS.Sandbox.exe db"
 end
 
 desc "Display routing information"
 task :routes => [:build_console] do
-	sh "cd src\\app\\SimpleCMS.Sandbox\\bin\\#{BUILD_CONFIG} && SimpleCMS.Sandbox.exe routes"
+	run_command "cd src\\app\\SimpleCMS.Sandbox\\bin\\#{BUILD_CONFIG} && SimpleCMS.Sandbox.exe routes"
 end
 
 desc "Setup website in iis"
